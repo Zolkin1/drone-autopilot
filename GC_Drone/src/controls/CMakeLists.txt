@@ -199,3 +199,5 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+add_executable(controls src/motor_calibration.cpp)
+target_link_libraries(controls ${catkin_LIBRARIES})
