@@ -1,8 +1,0 @@
-prefix=/home/zolkin/GC_Drone/devel
-
-Name: IMU
-Description: Description of IMU
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/zolkin/GC_Drone/devel/lib 
-Requires: 

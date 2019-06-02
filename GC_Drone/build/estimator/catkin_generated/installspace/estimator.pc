@@ -1,8 +1,0 @@
-prefix=/home/zolkin/GC_Drone/install
-
-Name: estimator
-Description: Description of estimator
-Version: 0.0.0
-Cflags: -I/home/zolkin/GC_Drone/install/include
-Libs: -L/home/zolkin/GC_Drone/install/lib 
-Requires: 

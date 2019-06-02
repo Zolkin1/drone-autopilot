@@ -1,2 +1,0 @@
-controls:estimator:sensors
--DCATKIN_DEVEL_PREFIX=/home/zolkin/GC_Drone/devel -DCMAKE_INSTALL_PREFIX=/home/zolkin/GC_Drone/install -G Unix Makefiles

@@ -1,0 +1,15 @@
+CMakeLists.txt.user
+*~
+\#*\#
+html/
+
+#ignore build and devel folder, they will be created by catkin_make
+build/
+devel/
+driver/uninstalled/CMakeFiles
+*.o
+*.so
+driver/uninstalled/ce30_driver/CMakeFiles
+driver/ce30_driver/CMakeFiles
+driver/CMakeFiles/
+driver/CMakeCache.txt
