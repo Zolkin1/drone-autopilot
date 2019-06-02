@@ -1,0 +1,8 @@
+prefix=/home/zolkin/GC_Drone/install
+
+Name: controls
+Description: Description of controls
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/zolkin/GC_Drone/install/lib 
+Requires: 
