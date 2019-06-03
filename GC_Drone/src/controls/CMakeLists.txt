@@ -106,7 +106,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES controls
+#  LIBRARIES my_lib
 #  CATKIN_DEPENDS estimator roscpp sensor_msgs sensors std_msgs
 #  DEPENDS system_lib
 )
@@ -120,12 +120,22 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
+  /Navio2/C++/Navio2
 )
 
+set(YOUR_LIB_SOURCES
+    include/RCOutput_Navio2.cpp
+    include/Util.cpp
+    include/RCOutput_Navio.cpp)
+    #libsrc4.cpp
+    #libsrc_etc.cpp)
+#add_library(your_library ${YOUR_LIB_SOURCES})
+
 ## Declare a C++ library
-# add_library(${PROJECT_NAME}
+add_library(#${PROJECT_NAME}
 #   src/${PROJECT_NAME}/controls.cpp
-# )
+my_lib ${YOUR_LIB_SOURCES}
+)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -145,12 +155,18 @@ include_directories(
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
+
+
+##Try this
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(${PROJECT_NAME}_node
-#   ${catkin_LIBRARIES}
-# )
+#target_link_libraries(#${PROJECT_NAME}_node
+#  ${catkin_LIBRARIES}
+#	my_lib
+#)
+
+link_directories( /Navio2/C++/Navio )
 
 #############
 ## Install ##
@@ -199,3 +215,7 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+
+add_executable(controls2 src/motor_calibration.cpp)
+target_link_libraries(controls2 ${catkin_LIBRARIES} my_lib)

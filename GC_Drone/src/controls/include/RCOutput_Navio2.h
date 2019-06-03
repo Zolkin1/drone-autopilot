@@ -2,7 +2,7 @@
 #define RCOUTPUT_NAVIO2_H
 
 #include "PWM.h"
-#include <Common/RCOutput.h>
+#include "RCOutput.h"
 
 
 class RCOutput_Navio2 : public RCOutput
