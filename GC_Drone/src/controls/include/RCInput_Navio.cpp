@@ -43,6 +43,7 @@ void RCInput_Navio::initialize()
 
     // GPIO setup
     //NEEDS TO BE RUN ON THE NAVIO BUT NO OTHER COMPUTER
+    //these shoudl be in pigpio.h
     /*if (get_navio_version() == NAVIO2)
     {
         gpioCfgClock(samplingRate, PI_DEFAULT_CLK_PERIPHERAL, 0);

@@ -7,12 +7,21 @@
 #include <memory>
 #include <string>
 #include <iostream>
+#include "ros/ros.h"
+#include "std_msgs/String.h"
+
 
 #define SERVO_MIN 0 /*mS*/
 #define SERVO_MAX 1750 /*mS*/
 
 #define PWM_OUTPUT 0 //Specifies whhich hardware channel to use
 
+std::string input;
+
+void changeOutput(const std_msgs::String::ConstPtr& msg)
+{
+    input = msg->data;
+}
 
 using namespace Navio;
 
@@ -22,10 +31,18 @@ std::unique_ptr <RCOutput> get_rcout()
     return ptr;
 }
 
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
 
-    std::string input = "low";
+    ros::init(argc, argv, "controls2");
+    ros::NodeHandle n;
+
+    ros::Subscriber sub = n.subscribe("changeOut", 100, changeOutput);
+
+    ros::Rate loop_rate(10);
+    printf("%s\n", "ros has been started");
+
+    input = "low";
 
     auto pwm = get_rcout();
     
@@ -50,7 +67,7 @@ int main(int argc, char *argv[])
 
     printf("Enter 'low' to send singal low, enter 'high' to send signal high. Default is high \n");
 
-    while (true) 
+    while (ros::ok()) 
     {
         if (input == "low")
         {
@@ -60,7 +77,11 @@ int main(int argc, char *argv[])
         {
             pwm->set_duty_cycle(PWM_OUTPUT, SERVO_MAX);
         }
-        std::cin >> input;   
+
+        ros::spinOnce();
+
+        //May need to remove this if pwm output is not working properly
+        //loop_rate.sleep();
     }
 
     return 0;
