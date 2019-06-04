@@ -8,7 +8,7 @@
 #include <string>
 #include <iostream>
 
-#define SERVO_MIN 1250 /*mS*/
+#define SERVO_MIN 0 /*mS*/
 #define SERVO_MAX 1750 /*mS*/
 
 #define PWM_OUTPUT 0 //Specifies whhich hardware channel to use
