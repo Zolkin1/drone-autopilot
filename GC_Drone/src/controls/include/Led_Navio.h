@@ -1,9 +1,9 @@
 #ifndef LED_NAVIO_H
 #define LED_NAVIO_H
 
-#include <Common/Led.h>
-#include "Navio+/PCA9685.h"
-#include <Common/gpio.h>
+#include "Led.h"
+#include "PCA9685.h"
+#include "gpio.h"
 
 
 using namespace Navio;

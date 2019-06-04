@@ -1,7 +1,7 @@
 #pragma once
 
 #include <cstddef>
-#include <Common/RCInput.h>
+#include "RCInput.h"
 
 class RCInput_Navio2 : public RCInput
 {

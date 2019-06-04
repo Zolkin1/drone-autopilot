@@ -1,8 +1,8 @@
 #ifndef ADC_NAVIO_H
 #define ADC_NAVIO_H
 
-#include <Common/ADC.h>
-#include <Common/Util.h>
+#include "src/ADC.h"
+#include "Util.h"
 #include "ADS1115.h"
 
 

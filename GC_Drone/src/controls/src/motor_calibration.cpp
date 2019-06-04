@@ -1,8 +1,8 @@
 #include <unistd.h>
-#include "Navio2/C++/Navio/PWM.h"
-#include "Navio2/C++/Navio/RCOutput_Navio.h"
-#include "Navio2/C++/Navio/RCOutput_Navio2.h"
-#include "Navio2/C++/Navio/Util.h"
+#include "PWM.h"
+#include "RCOutput_Navio.h"
+#include "RCOutput_Navio2.h"
+#include "Util.h"
 #include <unistd.h>
 #include <memory>
 #include <string>
@@ -14,21 +14,20 @@
 #define PWM_OUTPUT 0 //Specifies whhich hardware channel to use
 
 
-//using namespace Navio;
+using namespace Navio;
 
-//std::unique_ptr <RCOutput> get_rcout()
-//{
- //   auto ptr = std::unique_ptr <RCOutput>{ new RCOutput_Navio2() };
-  //  return ptr;/
-//}
+std::unique_ptr <RCOutput> get_rcout()
+{
+    auto ptr = std::unique_ptr <RCOutput>{ new RCOutput_Navio2() };
+    return ptr;
+}
 
 int main(int argc, char *argv[])
 {
 
     std::string input = "low";
 
-    //auto pwm = get_rcout();
-    auto pwm = std::unique_ptr <RCOutput>{ new RCOutput_Navio2() };
+    auto pwm = get_rcout();
     
     if (check_apm()) {
         return 1;

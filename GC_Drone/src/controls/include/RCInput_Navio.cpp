@@ -1,4 +1,5 @@
 #include "RCInput_Navio.h"
+#include "Util.h"
 
 RCInput_Navio::RCInput_Navio()
 {
@@ -41,13 +42,17 @@ void RCInput_Navio::initialize()
     }
 
     // GPIO setup
+    //NEEDS TO BE RUN ON THE NAVIO BUT NO OTHER COMPUTER
+    /*if (get_navio_version() == NAVIO2)
+    {
+        gpioCfgClock(samplingRate, PI_DEFAULT_CLK_PERIPHERAL, 0);
+        gpioInitialise();
+        gpioSetMode(4,PI_INPUT);
 
-    gpioCfgClock(samplingRate, PI_DEFAULT_CLK_PERIPHERAL, 0);
-    gpioInitialise();
-    gpioSetMode(4,PI_INPUT);
-
-    previousTick = gpioTick();
-    gpioSetAlertFuncEx(ppmInputGpio, RCInput_Navio::ppmOnEdgeTrampolin, this);
+        previousTick = gpioTick();
+        gpioSetAlertFuncEx(ppmInputGpio, RCInput_Navio::ppmOnEdgeTrampolin, this);
+    }*/
+    
 }
 
 int RCInput_Navio::read(int ch)

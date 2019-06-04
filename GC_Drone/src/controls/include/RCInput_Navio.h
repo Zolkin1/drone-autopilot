@@ -3,9 +3,9 @@
 
 #include <pigpio.h>
 #include <stdio.h>
-#include <Common/RCInput.h>
-#include <Common/gpio.h>
-#include <Common/Util.h>
+#include "RCInput.h"
+#include "gpio.h"
+#include "Util.h"
 
 using namespace Navio;
 
