@@ -1,8 +1,8 @@
 #include <unistd.h>
-#include "PWM.h"
-#include "RCOutput_Navio.h"
-#include "RCOutput_Navio2.h"
-#include "Util.h"
+#include "header-files/PWM.h"
+#include "header-files/RCOutput_Navio.h"
+#include "header-files/RCOutput_Navio2.h"
+#include "header-files/Util.h"
 #include <unistd.h>
 #include <memory>
 #include <string>
