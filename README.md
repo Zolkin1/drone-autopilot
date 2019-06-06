@@ -1,5 +1,5 @@
 # drone-autopilot
-This repo provides a custom autopilot designed to be run on the Navio2 and Raspberry Pi 3 hardware. This is built of the ROS architecture. On board there are two 9 axis IMU sensors, a GPS, a barometer, 4 ESCs, and 2 servos right now. The hardware is reserved for change. See below for a wiring diagram.
+This repo provides a custom autopilot designed to be run on the Navio2 and Raspberry Pi 3 hardware. This is built with the ROS architecture. On the drone there are two 9 axis IMU sensors, a GPS, a barometer, 4 ESCs, and 2 servos right now. The hardware is subject to change. See below for a wiring diagram.
 
 # Cloning and Building the Repo
 1. Download ROS
