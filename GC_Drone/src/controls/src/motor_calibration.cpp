@@ -11,8 +11,8 @@
 #include "std_msgs/String.h"
 
 
-#define SERVO_MIN 0 /*mS*/
-#define SERVO_MAX 1750 /*mS*/
+#define SERVO_MIN 1000 /*mS*/ //0
+#define SERVO_MAX 1500 /*mS*/ //1750
 
 #define PWM_OUTPUT 0 //Specifies whhich hardware channel to use
 
