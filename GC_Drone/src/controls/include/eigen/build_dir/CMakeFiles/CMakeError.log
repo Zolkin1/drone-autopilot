@@ -1,0 +1,285 @@
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wshorten64to32 failed with the following output:
+Change Dir: /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_53522/fast"
+/usr/bin/make -f CMakeFiles/cmTC_53522.dir/build.make CMakeFiles/cmTC_53522.dir/build
+make[1]: Entering directory '/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_53522.dir/src.cxx.o
+/usr/bin/c++    -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -DCOMPILER_SUPPORT_Wshorten64to32 -Werror   -Wshorten-64-to-32 -o CMakeFiles/cmTC_53522.dir/src.cxx.o -c /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp/src.cxx
+c++: error: unrecognized command line option '-Wshorten-64-to-32'
+CMakeFiles/cmTC_53522.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_53522.dir/src.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_53522.dir/src.cxx.o] Error 1
+make[1]: Leaving directory '/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_53522/fast' failed
+make: *** [cmTC_53522/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wenumconversion failed with the following output:
+Change Dir: /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_4a98c/fast"
+/usr/bin/make -f CMakeFiles/cmTC_4a98c.dir/build.make CMakeFiles/cmTC_4a98c.dir/build
+make[1]: Entering directory '/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_4a98c.dir/src.cxx.o
+/usr/bin/c++    -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -DCOMPILER_SUPPORT_Wenumconversion -Werror   -Wenum-conversion -o CMakeFiles/cmTC_4a98c.dir/src.cxx.o -c /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp/src.cxx
+c++: error: unrecognized command line option '-Wenum-conversion'; did you mean '-Wno-conversion'?
+CMakeFiles/cmTC_4a98c.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_4a98c.dir/src.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_4a98c.dir/src.cxx.o] Error 1
+make[1]: Leaving directory '/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_4a98c/fast' failed
+make: *** [cmTC_4a98c/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Wcpp11extensions failed with the following output:
+Change Dir: /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_aee26/fast"
+/usr/bin/make -f CMakeFiles/cmTC_aee26.dir/build.make CMakeFiles/cmTC_aee26.dir/build
+make[1]: Entering directory '/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_aee26.dir/src.cxx.o
+/usr/bin/c++    -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -DCOMPILER_SUPPORT_Wcpp11extensions -Werror   -Wc++11-extensions -o CMakeFiles/cmTC_aee26.dir/src.cxx.o -c /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp/src.cxx
+c++: error: unrecognized command line option '-Wc++11-extensions'; did you mean '-fms-extensions'?
+CMakeFiles/cmTC_aee26.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_aee26.dir/src.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_aee26.dir/src.cxx.o] Error 1
+make[1]: Leaving directory '/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_aee26/fast' failed
+make: *** [cmTC_aee26/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_wd981 failed with the following output:
+Change Dir: /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_2faa3/fast"
+/usr/bin/make -f CMakeFiles/cmTC_2faa3.dir/build.make CMakeFiles/cmTC_2faa3.dir/build
+make[1]: Entering directory '/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_2faa3.dir/src.cxx.o
+/usr/bin/c++    -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wdouble-promotion -Wno-psabi -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -DCOMPILER_SUPPORT_wd981 -Werror   -wd981 -o CMakeFiles/cmTC_2faa3.dir/src.cxx.o -c /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp/src.cxx
+c++: error: unrecognized command line option '-wd981'
+CMakeFiles/cmTC_2faa3.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_2faa3.dir/src.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_2faa3.dir/src.cxx.o] Error 1
+make[1]: Leaving directory '/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_2faa3/fast' failed
+make: *** [cmTC_2faa3/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_wd2304 failed with the following output:
+Change Dir: /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_c072c/fast"
+/usr/bin/make -f CMakeFiles/cmTC_c072c.dir/build.make CMakeFiles/cmTC_c072c.dir/build
+make[1]: Entering directory '/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_c072c.dir/src.cxx.o
+/usr/bin/c++    -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wdouble-promotion -Wno-psabi -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -DCOMPILER_SUPPORT_wd2304 -Werror   -wd2304 -o CMakeFiles/cmTC_c072c.dir/src.cxx.o -c /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp/src.cxx
+c++: error: unrecognized command line option '-wd2304'
+CMakeFiles/cmTC_c072c.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_c072c.dir/src.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_c072c.dir/src.cxx.o] Error 1
+make[1]: Leaving directory '/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_c072c/fast' failed
+make: *** [cmTC_c072c/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_STRICTANSI failed with the following output:
+Change Dir: /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_43058/fast"
+/usr/bin/make -f CMakeFiles/cmTC_43058.dir/build.make CMakeFiles/cmTC_43058.dir/build
+make[1]: Entering directory '/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_43058.dir/src.cxx.o
+/usr/bin/c++    -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wdouble-promotion -Wno-psabi -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -DCOMPILER_SUPPORT_STRICTANSI -Werror   -strict-ansi -o CMakeFiles/cmTC_43058.dir/src.cxx.o -c /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp/src.cxx
+c++: error: unrecognized command line option '-strict-ansi'; did you mean '-fstrict-enums'?
+CMakeFiles/cmTC_43058.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_43058.dir/src.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_43058.dir/src.cxx.o] Error 1
+make[1]: Leaving directory '/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_43058/fast' failed
+make: *** [cmTC_43058/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORT_Qunusedarguments failed with the following output:
+Change Dir: /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_7c374/fast"
+/usr/bin/make -f CMakeFiles/cmTC_7c374.dir/build.make CMakeFiles/cmTC_7c374.dir/build
+make[1]: Entering directory '/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_7c374.dir/src.cxx.o
+/usr/bin/c++    -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wdouble-promotion -Wno-psabi -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -DCOMPILER_SUPPORT_Qunusedarguments -Werror   -Qunused-arguments -o CMakeFiles/cmTC_7c374.dir/src.cxx.o -c /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp/src.cxx
+c++: error: unrecognized command line option '-Qunused-arguments'; did you mean '-Wunused-parameter'?
+CMakeFiles/cmTC_7c374.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_7c374.dir/src.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_7c374.dir/src.cxx.o] Error 1
+make[1]: Leaving directory '/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_7c374/fast' failed
+make: *** [cmTC_7c374/fast] Error 2
+
+Source file was:
+int main() { return 0; }
+Determining if the Q_WS_WIN exist failed with the following output:
+Change Dir: /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_2a574/fast"
+/usr/bin/make -f CMakeFiles/cmTC_2a574.dir/build.make CMakeFiles/cmTC_2a574.dir/build
+make[1]: Entering directory '/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_2a574.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++   -I/usr/include/qt4  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wdouble-promotion -Wno-psabi -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -ansi -O1 -g1    -o CMakeFiles/cmTC_2a574.dir/CheckSymbolExists.cxx.o -c /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: In function ‘int main(int, char**)’:
+/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: ‘Q_WS_WIN’ was not declared in this scope
+   return ((int*)(&Q_WS_WIN))[argc];
+                   ^~~~~~~~
+/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: note: suggested alternative: ‘Q_WS_X11’
+   return ((int*)(&Q_WS_WIN))[argc];
+                   ^~~~~~~~
+                   Q_WS_X11
+CMakeFiles/cmTC_2a574.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_2a574.dir/CheckSymbolExists.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_2a574.dir/CheckSymbolExists.cxx.o] Error 1
+make[1]: Leaving directory '/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_2a574/fast' failed
+make: *** [cmTC_2a574/fast] Error 2
+
+File /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_WIN
+  return ((int*)(&Q_WS_WIN))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the Q_WS_QWS exist failed with the following output:
+Change Dir: /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_8f00b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_8f00b.dir/build.make CMakeFiles/cmTC_8f00b.dir/build
+make[1]: Entering directory '/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_8f00b.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++   -I/usr/include/qt4  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wdouble-promotion -Wno-psabi -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -ansi -O1 -g1    -o CMakeFiles/cmTC_8f00b.dir/CheckSymbolExists.cxx.o -c /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: In function ‘int main(int, char**)’:
+/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: ‘Q_WS_QWS’ was not declared in this scope
+   return ((int*)(&Q_WS_QWS))[argc];
+                   ^~~~~~~~
+/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: note: suggested alternative: ‘Q_WS_X11’
+   return ((int*)(&Q_WS_QWS))[argc];
+                   ^~~~~~~~
+                   Q_WS_X11
+CMakeFiles/cmTC_8f00b.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_8f00b.dir/CheckSymbolExists.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_8f00b.dir/CheckSymbolExists.cxx.o] Error 1
+make[1]: Leaving directory '/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_8f00b/fast' failed
+make: *** [cmTC_8f00b/fast] Error 2
+
+File /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_QWS
+  return ((int*)(&Q_WS_QWS))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the Q_WS_MAC exist failed with the following output:
+Change Dir: /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_a7438/fast"
+/usr/bin/make -f CMakeFiles/cmTC_a7438.dir/build.make CMakeFiles/cmTC_a7438.dir/build
+make[1]: Entering directory '/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_a7438.dir/CheckSymbolExists.cxx.o
+/usr/bin/c++   -I/usr/include/qt4  -std=c++03 -pedantic -Wall -Wextra -Wundef -Wcast-align -Wchar-subscripts -Wnon-virtual-dtor -Wunused-local-typedefs -Wpointer-arith -Wwrite-strings -Wformat-security -Wlogical-op -Wdouble-promotion -Wno-psabi -Wno-variadic-macros -Wno-long-long -fno-check-new -fno-common -fstrict-aliasing -ansi -O1 -g1    -o CMakeFiles/cmTC_a7438.dir/CheckSymbolExists.cxx.o -c /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx
+/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx: In function ‘int main(int, char**)’:
+/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: error: ‘Q_WS_MAC’ was not declared in this scope
+   return ((int*)(&Q_WS_MAC))[argc];
+                   ^~~~~~~~
+/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:8:19: note: suggested alternative: ‘Q_WS_X11’
+   return ((int*)(&Q_WS_MAC))[argc];
+                   ^~~~~~~~
+                   Q_WS_X11
+CMakeFiles/cmTC_a7438.dir/build.make:65: recipe for target 'CMakeFiles/cmTC_a7438.dir/CheckSymbolExists.cxx.o' failed
+make[1]: *** [CMakeFiles/cmTC_a7438.dir/CheckSymbolExists.cxx.o] Error 1
+make[1]: Leaving directory '/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_a7438/fast' failed
+make: *** [cmTC_a7438/fast] Error 2
+
+File /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp/CheckSymbolExists.cxx:
+/* */
+#include <QtCore/qglobal.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef Q_WS_MAC
+  return ((int*)(&Q_WS_MAC))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_503d6/fast"
+/usr/bin/make -f CMakeFiles/cmTC_503d6.dir/build.make CMakeFiles/cmTC_503d6.dir/build
+make[1]: Entering directory '/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_503d6.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_503d6.dir/CheckSymbolExists.c.o   -c /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_503d6
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_503d6.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_503d6.dir/CheckSymbolExists.c.o  -o cmTC_503d6 
+CMakeFiles/cmTC_503d6.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_503d6.dir/build.make:97: recipe for target 'cmTC_503d6' failed
+make[1]: *** [cmTC_503d6] Error 1
+make[1]: Leaving directory '/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_503d6/fast' failed
+make: *** [cmTC_503d6/fast] Error 2
+
+File /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_3a88f/fast"
+/usr/bin/make -f CMakeFiles/cmTC_3a88f.dir/build.make CMakeFiles/cmTC_3a88f.dir/build
+make[1]: Entering directory '/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_3a88f.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_3a88f.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_3a88f
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3a88f.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_3a88f.dir/CheckFunctionExists.c.o  -o cmTC_3a88f -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_3a88f.dir/build.make:97: recipe for target 'cmTC_3a88f' failed
+make[1]: *** [cmTC_3a88f] Error 1
+make[1]: Leaving directory '/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/build_dir/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_3a88f/fast' failed
+make: *** [cmTC_3a88f/fast] Error 2
+
+

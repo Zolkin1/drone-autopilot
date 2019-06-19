@@ -9,6 +9,10 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
 )
 
+generate_messages(
+   DEPENDENCIES
+  estimator
+ )
 
 catkin_package()
 
@@ -47,7 +51,13 @@ add_library(#${PROJECT_NAME}
   my_lib ${YOUR_LIB_SOURCES}
 )
 
-link_directories( /include /Navio2/C++/Navio )
+link_directories( /include /Navio2/C++/Navio /include/Eigen )
+find_package (Eigen3 3.3 REQUIRED NO_MODULE)
+
 
 add_executable(controls2 src/motor_calibration.cpp)
+add_executable(mainController src/top_level_controller.cpp src/controller.cpp)# include/Eigen/Dense)
+
+target_link_libraries (mainController Eigen3::Eigen ${catkin_LIBRARIES})
+
 target_link_libraries(controls2 ${catkin_LIBRARIES} my_lib)
