@@ -25,4 +25,5 @@ public:
 	
 	Eigen::Matrix<float, 4, 1> getInputs();
 	float getDesiredThrust();
+	~Controller();
 };

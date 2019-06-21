@@ -72,7 +72,7 @@ int main(int argc, char **argv)
 
     K << 1, 1, 1, 1, 1, 1; //Change the dimensions and numbers to actual gain
 
-    mainController.setK()
+    mainController.setK(K);
 
     while(ros::ok())
     {
@@ -81,14 +81,49 @@ int main(int argc, char **argv)
     	Return 4 duty cycles.
     	*/
     	controlInputs = mainController.getInputs();
-    	speeds = mapInputsToSpeed(controlInputs); //Seems like this should be a pass by refrence with no return
+    	speeds = mapInputsToSpeed(controlInputs, 1.0, 1.0, 0.1); //Seems like this should be a pass by refrence with no return
     	dutyCycles = speedToDutyCycles(speeds); //Seems like this should be a pass by refrence with no return
 
 
-    	motor_comm_pub.publish(dutyCycles)
+    	//Publish the duty cycles
+    	motor_comm_pub.publish(dutyCycles);
     	ros::spinOnce();
 
     	loop_rate.sleep();
     }
     return 0;
+}
+
+Eigen::Vector4f mapInputsToSpeed(Eigen::Vector4f controlInputs, float b, float l, float d)
+{
+	/*
+	Solve these equations:
+	b is thrust factor
+	l is distance from center of the drone to the rotor
+	d is drag factor
+	w is the speed of a rotor	
+
+	ft = b(w1^2 + w2^2 + w3^2 w4^2)
+	tx = bl(w3^2 - w1^2)
+	ty = bl(w4^2 - -w2^2)
+	tz = d(w2^2 + w4^2 - w1^2 - w3^2)
+	
+	return vector of w
+	*/
+
+	Eigen::Matrix4f A;
+	A << b, b, b, b,
+		-b*l, 0.0, b*l, 0.0,
+		0.0, -b*l, 0.0, b*l,
+		-d, d, -d, d;
+	
+	Eigen::Matrix4f invA = A.inverse();
+
+	return invA.lu().solve(controlInputs);  
+}
+
+estimator::motor_commands speedToDutyCycles(Eigen::Vector4f speeds)
+{
+	estimator::motor_commands motorComms;
+	return motorComms;
 }

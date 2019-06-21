@@ -1,1 +1,1 @@
-float32 [4] dutyCycles
+float32[4] dutyCycles
