@@ -21,7 +21,8 @@ public:
 
 	void setDesiredState(const estimator::quad_rotor_states::ConstPtr& msg);
 	void setEstimatedState(const estimator::quad_rotor_states::ConstPtr& msg);
+	void setK(Eigen::Matrix<float, 6, 1> K);
 	
-	Eigen::Matrix<float, 4, 1> getDesiredTorques();
+	Eigen::Matrix<float, 4, 1> getInputs();
 	float getDesiredThrust();
 };

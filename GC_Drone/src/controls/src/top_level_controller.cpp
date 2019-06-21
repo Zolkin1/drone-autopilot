@@ -41,13 +41,8 @@ Publishing messages:
 	motor_commands
 */
 
-#include "ros/ros.h"
-//#include <Eigen/Dense>
-#include <estimator/quad_rotor_states.h>
-#include <estimator/imu_data.h>
-#include "controller.h"
+#include "top_level_controller.h"
 
-Controller mainController;
 
 void updateState (const estimator::quad_rotor_states::ConstPtr& msg)
 {
@@ -70,8 +65,14 @@ int main(int argc, char **argv)
 	ros::Subscriber est_state_sub = n.subscribe("est_state", 100, updateState);
 	ros::Subscriber des_state_sub = n.subscribe("des_state", 100, changeTarget);
 
-	ros::Publisher motor_comm_pub = n.advertise<estimator::imu_data>("motor_commands", 1000);
+	ros::Publisher motor_comm_pub = n.advertise<estimator::motor_commands>("motor_commands", 1000);
     ros::Rate loop_rate(20);
+
+    using namespace controller;
+
+    K << 1, 1, 1, 1, 1, 1; //Change the dimensions and numbers to actual gain
+
+    mainController.setK()
 
     while(ros::ok())
     {
@@ -79,13 +80,15 @@ int main(int argc, char **argv)
     	Perform controls math.
     	Return 4 duty cycles.
     	*/
+    	controlInputs = mainController.getInputs();
+    	speeds = mapInputsToSpeed(controlInputs); //Seems like this should be a pass by refrence with no return
+    	dutyCycles = speedToDutyCycles(speeds); //Seems like this should be a pass by refrence with no return
 
-    	//Need to model the quad rotor. Do it in matlab.
 
-
-
+    	motor_comm_pub.publish(dutyCycles)
     	ros::spinOnce();
-    	return 0;
-    }
 
+    	loop_rate.sleep();
+    }
+    return 0;
 }

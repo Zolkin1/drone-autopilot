@@ -18,7 +18,8 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
    FILES
    imu_data.msg
-   quad_rotor_states.msg 
+   quad_rotor_states.msg
+   motor_commands.msg
 )
 
 ## Generate added messages and services with any dependencies listed here

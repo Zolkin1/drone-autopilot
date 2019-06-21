@@ -31,9 +31,14 @@ void Controller::setDesiredState(const estimator::quad_rotor_states::ConstPtr& m
 	}
 }
 
-Eigen::Matrix<float, 4, 1> Controller::getDesiredTorques()
+void setK(Eigen::Matrix<float, 6, 1> K)
 {
+	fK = K;
+}
 
+Eigen::Matrix<float, 4, 1> Controller::getInputs()
+{
+	
 }
 
 float Controller::getDesiredThrust()
