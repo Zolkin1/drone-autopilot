@@ -26,6 +26,9 @@ rostopic pub /changeOut std_msgs/String "high"
 ```
 Then plug in the ESC (should emit a 1-2-3 beep) then it should emit another beep and that indicates it is done. But you may need to publish a "low" message first to show it where the low signal is.If there are issues, follow [this](https://forum.arduino.cc/index.php?topic=270309.0) link. After that, the esc should be ready to fly!
 
+# Style and File Naming
+We will be following the ROS C++ style guie found [here] (http://wiki.ros.org/CppStyleGuide).
+
 # System Wiring Diagram
 
 # ROS Publish and Subscribe Messages
