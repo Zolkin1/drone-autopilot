@@ -29,6 +29,8 @@ Then plug in the ESC (should emit a 1-2-3 beep) then it should emit another beep
 # Style and File Naming
 We will be following the ROS C++ style guie found [here](http://wiki.ros.org/CppStyleGuide).
 
+When creating a new branch, please use the convention: initials-<description of branch>. For example, when @Zolkin1 is working on the quadrotor control system the new branch would be: zo-quadrotor_controls
+
 # System Wiring Diagram
 
 # ROS Publish and Subscribe Messages
