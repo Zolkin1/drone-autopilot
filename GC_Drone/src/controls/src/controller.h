@@ -23,7 +23,7 @@ public:
 	void setEstimatedState(const estimator::quad_rotor_states::ConstPtr& msg);
 	void setK(Eigen::Matrix<float, 6, 1> K);
 	
-	Eigen::Matrix<float, 4, 1> getInputs();
+	Eigen::Vector4f getInputs();
 	float getDesiredThrust();
 	~Controller();
 };

@@ -125,5 +125,10 @@ Eigen::Vector4f mapInputsToSpeed(Eigen::Vector4f controlInputs, float b, float l
 estimator::motor_commands speedToDutyCycles(Eigen::Vector4f speeds)
 {
 	estimator::motor_commands motorComms;
+	for (int i = 0; i < speeds.size(); i++)
+	{
+		motorComms.dutyCycles.at(i) = speeds(i)/MAX_MOTOR_SPEED;
+	}
+
 	return motorComms;
 }

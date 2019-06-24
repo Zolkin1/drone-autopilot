@@ -1,3 +1,6 @@
+/*
+Currently uses an LQR control scheme. Probably move to a transfer function matrix. See top_level_controller.cpp for more details
+*/
 #include "controller.h"
 
 Controller::Controller(Eigen::Matrix<float, 6, 1> K, Vector12f initialEstimatedState)
@@ -36,7 +39,14 @@ void Controller::setK(Eigen::Matrix<float, 6, 1> K)
 	fK = K;
 }
 
-Eigen::Matrix<float, 4, 1> Controller::getInputs()
+/*
+returns vector of 4 floats:
+	ft - thrust forces
+	tx - torque around the x axis
+	ty - torque around the y axis
+	tz = torque around the z axis
+*/
+Eigen::Vector4f Controller::getInputs()
 {
 
 }
@@ -45,7 +55,11 @@ float Controller::getDesiredThrust()
 {
 
 }
+
+//Need to write the correct destructor
 Controller::~Controller()
 {
-
+	//delete fEstimatedState;
+	//delete fDesiredState;
+	//delete fK;
 }

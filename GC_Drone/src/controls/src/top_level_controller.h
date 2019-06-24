@@ -8,6 +8,7 @@
 const float arm_length = 1;
 const float thrust_factor = 1;
 const float drag_factor = 0.1;
+const float MAX_MOTOR_SPEED = 10; //Needs units and the correct value
 
 
 Controller mainController;
