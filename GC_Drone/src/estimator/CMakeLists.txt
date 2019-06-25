@@ -20,6 +20,7 @@ add_message_files(
    imu_data.msg
    quad_rotor_states.msg
    motor_commands.msg
+   barometer_data.msg
 )
 
 ## Generate added messages and services with any dependencies listed here

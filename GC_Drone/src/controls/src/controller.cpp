@@ -3,7 +3,7 @@ Currently uses an LQR control scheme. Probably move to a transfer function matri
 */
 #include "controller.h"
 
-Controller::Controller(Eigen::Matrix<float, 6, 1> K, Vector12f initialEstimatedState)
+Controller::Controller(Eigen::Matrix<float, 4, 12> K, Vector12f initialEstimatedState)
 {
 	fK = K;
 	fEstimatedState = initialEstimatedState;
@@ -13,7 +13,10 @@ Controller::Controller(Eigen::Matrix<float, 6, 1> K, Vector12f initialEstimatedS
 Controller::Controller()
 {
 	//fK = Eigen::Matrix<float, 6, 1> K;
-	fK << 0,0,0,0,0,0;
+	fK << 0,0,0,0,0,0,0,0,0,0,0,0,
+		  0,0,0,0,0,0,0,0,0,0,0,0,
+		  0,0,0,0,0,0,0,0,0,0,0,0,
+		  0,0,0,0,0,0,0,0,0,0,0,0;
 	fEstimatedState << 0,0,0,0,0,0,0,0,0,0,0,0;
 	fDesiredState = fEstimatedState;
 }
@@ -34,7 +37,7 @@ void Controller::setDesiredState(const estimator::quad_rotor_states::ConstPtr& m
 	}
 }
 
-void Controller::setK(Eigen::Matrix<float, 6, 1> K)
+void Controller::setK(Eigen::Matrix<float, 4, 12> K)
 {
 	fK = K;
 }
@@ -44,15 +47,13 @@ returns vector of 4 floats:
 	ft - thrust forces
 	tx - torque around the x axis
 	ty - torque around the y axis
-	tz = torque around the z axis
+	tz - torque around the z axis
 */
 Eigen::Vector4f Controller::getInputs()
 {
-
-}
-
-float Controller::getDesiredThrust()
-{
+	Vector12f error = fDesiredState - fEstimatedState;
+	Eigen::Vector4f controlInputs = fK * error;
+	return controlInputs;
 
 }
 

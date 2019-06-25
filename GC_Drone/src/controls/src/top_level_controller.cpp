@@ -46,12 +46,12 @@ Publishing messages:
 
 void updateState (const estimator::quad_rotor_states::ConstPtr& msg)
 {
-	mainController.setDesiredState(msg);
+	quadrotorController.setDesiredState(msg);
 }
 
 void changeTarget (const estimator::quad_rotor_states::ConstPtr& msg)
 {
-	mainController.setEstimatedState(msg);
+	quadrotorController.setEstimatedState(msg);
 }
 
 int main(int argc, char **argv)
@@ -62,6 +62,7 @@ int main(int argc, char **argv)
 	ros::NodeHandle n;
 
 	//Subscribe to the topics that publish a message: estimator::quad_rotor_states
+	//May want to move to a multi threaded spinner like async spinner...
 	ros::Subscriber est_state_sub = n.subscribe("est_state", 100, updateState);
 	ros::Subscriber des_state_sub = n.subscribe("des_state", 100, changeTarget);
 
@@ -70,23 +71,39 @@ int main(int argc, char **argv)
 
     using namespace controller;
 
-    K << 1, 1, 1, 1, 1, 1; //Change the dimensions and numbers to actual gain
+    K <<  0,0,0,0,0,0,0,0,0,0,0,0,
+		  0,0,0,0,0,0,0,0,0,0,0,0,
+		  0,0,0,0,0,0,0,0,0,0,0,0,
+		  0,0,0,0,0,0,0,0,0,0,0,0; //Change the numbers to actual gain
 
-    mainController.setK(K);
+    quadrotorController.setK(K);
 
     while(ros::ok())
     {
-    	/*
-    	Perform controls math.
-    	Return 4 duty cycles.
-    	*/
-    	controlInputs = mainController.getInputs();
-    	speeds = mapInputsToSpeed(controlInputs, 1.0, 1.0, 0.1); //Seems like this should be a pass by refrence with no return
-    	dutyCycles = speedToDutyCycles(speeds); //Seems like this should be a pass by refrence with no return
+    	if (fly)
+    	{
+	    	/*
+	    	Perform controls math.
+	    	Return 4 duty cycles.
+	    	*/
+	    	controlInputs = quadrotorController.getInputs();
+	    	
+	    	speeds = mapInputsToSpeed(controlInputs, THRUST_FACTOR, ARM_LENGTH, DRAG_FACTOR);
+
+	    	dutyCycles = speedToDutyCycles(speeds);
 
 
-    	//Publish the duty cycles
-    	motor_comm_pub.publish(dutyCycles);
+
+	    	motor_comm_pub.publish(dutyCycles);     //Publish the duty cycles
+    	}
+    	else
+    	{
+    		for (int i = 0; i < dutyCycles.dutyCycles.size(); i++)
+    		{
+    			dutyCycles.dutyCycles.at(i) = 0;		
+    		}
+    		motor_comm_pub.publish(dutyCycles);
+    	}
     	ros::spinOnce();
 
     	loop_rate.sleep();
@@ -127,7 +144,18 @@ estimator::motor_commands speedToDutyCycles(Eigen::Vector4f speeds)
 	estimator::motor_commands motorComms;
 	for (int i = 0; i < speeds.size(); i++)
 	{
-		motorComms.dutyCycles.at(i) = speeds(i)/MAX_MOTOR_SPEED;
+		if (speeds(i) > 1.0) //Saturate on the high side
+		{
+			motorComms.dutyCycles.at(i) = 1;
+		}
+		else if (speeds(i) < -1.0) //Saturate on the low side
+		{
+			motorComms.dutyCycles.at(i) = -1;
+		}
+		else
+		{
+			motorComms.dutyCycles.at(i) = speeds(i)/MAX_MOTOR_SPEED;
+		}
 	}
 
 	return motorComms;

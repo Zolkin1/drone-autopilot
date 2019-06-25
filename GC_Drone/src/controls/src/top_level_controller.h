@@ -5,17 +5,18 @@
 #include "controller.h"
 
 //Declare all the mechanical constants here. i.e. length, weight, drag factor ect...
-const float arm_length = 1;
-const float thrust_factor = 1;
-const float drag_factor = 0.1;
+const float ARM_LENGTH = 1;
+const float THRUST_FACTOR = 1;
+const float DRAG_FACTOR = 0.1;
 const float MAX_MOTOR_SPEED = 10; //Needs units and the correct value
 
+bool fly;
 
-Controller mainController;
+Controller quadrotorController;
 
 namespace controller
 {
-	Eigen::Matrix<float, 6, 1> K;
+	Eigen::Matrix<float, 4, 12> K;
     Eigen::Vector4f controlInputs;
     Eigen::Vector4f speeds;
     estimator::motor_commands dutyCycles;
