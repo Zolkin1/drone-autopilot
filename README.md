@@ -46,3 +46,6 @@ An nput node (either teleoperated or autonomous input) will publish a desired st
 
 
 # Controls
+
+# Project Management
+Current to-do's and issues are being tracked in GitHub through issues and/or the project tab.
