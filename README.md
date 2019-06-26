@@ -34,5 +34,15 @@ When creating a new branch, please use the convention: initials-description_of_b
 # System Wiring Diagram
 
 # ROS Publish and Subscribe Messages
+Right now, the nodes we have are:
+* main_controller
+* imu
+* barometer
+* estimator
+
+A GPS node will be added. The sensors will publish on their respective topics. The estimator will recieve these messages at different rates then use a multirate kalman filter to fuse the data and filter out noise. The estimator will publish an estimate of the state to the controller.
+
+An nput node (either teleoperated or autonomous input) will publish a desired state. The controller will then take that along with the estimated state and attempt to output proper duty cycles to the motors.
+
 
 # Controls
