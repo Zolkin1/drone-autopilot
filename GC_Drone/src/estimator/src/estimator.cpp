@@ -1,25 +1,28 @@
-#include "ros/ros.h"
-#include <estimator/imu_data.h>
+#include "estimator.h"
 
-void imuCallBack(const estimator::imu_data::ConstPtr& msg);
-
-//Declare global variables
-boost::array<float, 3> acc;
-boost::array<float, 3> gyr;
-boost::array<float, 3> mag;
 
 int main(int argc, char **argv)
 {
 	ros::init(argc, argv, "estimator");
 	ros::NodeHandle n;
 
-	ros::Subscriber sub = n.subscribe("imu_data", 1000, imuCallBack);
+	ros::Subscriber imuSub = n.subscribe("imu_data", 1000, imuCallBack);
+	ros::Subscriber barometerSub = n.subscribe("barometer_data", 1000, barometerCallBack);
+
+	ros::Publisher est_state = n.advertise<estimator::quad_rotor_states>("estimated_states", 1000);
 
 	ros::Rate loop_rate(10);
 
 	while (ros::ok())
 	{
-		//printf("In estimator loop");
+		printf("In estimator loop");
+
+		//TODO: Implement the filter class
+		//Add states variable
+		filter.predict();
+		states = filter.update(acc, gyr, height);
+
+		est_state.advertise(states);
 
 		ros::spinOnce();
 
@@ -39,4 +42,10 @@ void imuCallBack(const estimator::imu_data::ConstPtr& msg)
 		gyr.at(i) = msg->gyro.at(i);
 		mag.at(i) = msg->magentometer.at(i);
 	}
+}
+
+//Recieves Barometer Data
+void barometerCallBack(const estimator::barometer_data::ConstPtr& msg)
+{
+	height = msg->data;
 }

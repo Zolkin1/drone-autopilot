@@ -37,12 +37,17 @@ Recieving messages:
 	est_state
 	des_state
 
-Publishing messages:
-	motor_commands
 */
 
 #include "top_level_controller.h"
 
+using namespace Navio;
+
+std::unique_ptr <RCOutput> get_rcout()
+{
+    auto ptr = std::unique_ptr <RCOutput>{ new RCOutput_Navio2() };
+    return ptr;
+}
 
 void updateState (const estimator::quad_rotor_states::ConstPtr& msg)
 {
@@ -57,6 +62,16 @@ void changeTarget (const estimator::quad_rotor_states::ConstPtr& msg)
 int main(int argc, char **argv)
 {
 
+	if( !(pwm->initialize(PWM_OUTPUT)) ) 
+	{
+        return 1;
+    }
+
+    // Need to set fly somewhere else
+    fly = true;
+
+    pwm->set_frequency(PWM_OUTPUT, 50);
+
 	//Init all the ros stuff - this node will be a publish and subscriber
 	ros::init(argc, argv, "top_level_controller");
 	ros::NodeHandle n;
@@ -66,8 +81,7 @@ int main(int argc, char **argv)
 	ros::Subscriber est_state_sub = n.subscribe("est_state", 100, updateState);
 	ros::Subscriber des_state_sub = n.subscribe("des_state", 100, changeTarget);
 
-	ros::Publisher motor_comm_pub = n.advertise<estimator::motor_commands>("motor_commands", 1000);
-    ros::Rate loop_rate(20);
+    ros::Rate loop_rate(200);
 
     using namespace controller;
 
@@ -90,19 +104,14 @@ int main(int argc, char **argv)
 	    	
 	    	speeds = mapInputsToSpeed(controlInputs, THRUST_FACTOR, ARM_LENGTH, DRAG_FACTOR);
 
-	    	dutyCycles = speedToDutyCycles(speeds);
-
-
-
-	    	motor_comm_pub.publish(dutyCycles);     //Publish the duty cycles
+	    	speedToDutyCycles(speeds);
     	}
     	else
     	{
     		for (int i = 0; i < dutyCycles.dutyCycles.size(); i++)
     		{
-    			dutyCycles.dutyCycles.at(i) = 0;		
+    			pwm->set_duty_cycle(i, -SERVO_MIN);		
     		}
-    		motor_comm_pub.publish(dutyCycles);
     	}
     	ros::spinOnce();
 
@@ -139,21 +148,24 @@ Eigen::Vector4f mapInputsToSpeed(Eigen::Vector4f controlInputs, float b, float l
 	return invA.lu().solve(controlInputs);  
 }
 
-estimator::motor_commands speedToDutyCycles(Eigen::Vector4f speeds)
+
+//Changes the motor PWM outputs
+void speedToDutyCycles(Eigen::Vector4f speeds)
 {
 	estimator::motor_commands motorComms;
 	for (int i = 0; i < speeds.size(); i++)
 	{
 		if (speeds(i) > 1.0) //Saturate on the high side
 		{
-			motorComms.dutyCycles.at(i) = 1;
+			pwm->set_duty_cycle(i, SERVO_MAX);
 		}
 		else if (speeds(i) < -1.0) //Saturate on the low side
 		{
-			motorComms.dutyCycles.at(i) = -1;
+			pwm->set_duty_cycle(i, -SERVO_MAX);
 		}
 		else
 		{
+			pwm->set_duty_cycle(i, ((speeds(i)/MAX_MOTOR_SPEED) * (SERVO_MAX - SERVO_MIN) + SERVO_MIN))
 			motorComms.dutyCycles.at(i) = speeds(i)/MAX_MOTOR_SPEED;
 		}
 	}
