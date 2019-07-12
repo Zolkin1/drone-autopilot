@@ -3,6 +3,11 @@
 #include <estimator/imu_data.h>
 #include <estimator/motor_commands.h>
 #include <Eigen/Dense>
+#include "header-files/PWM.h"
+#include "header-files/RCOutput_Navio.h"
+#include "header-files/RCOutput_Navio2.h"
+#include "header-files/Util.h"
+#include <unistd.h>
 #include "controller.h"
 
 //Declare all the mechanical constants here. i.e. length, weight, drag factor ect...
@@ -30,9 +35,10 @@ namespace controller
 
 void updateState (const estimator::quad_rotor_states::ConstPtr& msg);
 void changeTarget (const estimator::quad_rotor_states::ConstPtr& msg);
-std::unique_ptr <RCOutput> get_rcout()
+std::unique_ptr <RCOutput> get_rcout();
 
 //Maybe move these to pass by refrence then have no returns
 Eigen::Vector4f mapInputsToSpeed(Eigen::Vector4f controlInputs, float b, float l, float d);
 void speedToDutyCycles(Eigen::Vector4f speeds);
+auto pwm = get_rcout();
 

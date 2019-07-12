@@ -61,7 +61,6 @@ void changeTarget (const estimator::quad_rotor_states::ConstPtr& msg)
 
 int main(int argc, char **argv)
 {
-
 	if( !(pwm->initialize(PWM_OUTPUT)) ) 
 	{
         return 1;
@@ -118,7 +117,7 @@ int main(int argc, char **argv)
     	loop_rate.sleep();
     }
     return 0;
-}
+} 
 
 Eigen::Vector4f mapInputsToSpeed(Eigen::Vector4f controlInputs, float b, float l, float d)
 {
@@ -145,6 +144,7 @@ Eigen::Vector4f mapInputsToSpeed(Eigen::Vector4f controlInputs, float b, float l
 	
 	Eigen::Matrix4f invA = A.inverse();
 
+	//This calculation could be slow. Might want to change it if it causing issues
 	return invA.lu().solve(controlInputs);  
 }
 
@@ -165,10 +165,8 @@ void speedToDutyCycles(Eigen::Vector4f speeds)
 		}
 		else
 		{
-			pwm->set_duty_cycle(i, ((speeds(i)/MAX_MOTOR_SPEED) * (SERVO_MAX - SERVO_MIN) + SERVO_MIN))
+			pwm->set_duty_cycle(i, ((speeds(i)/MAX_MOTOR_SPEED) * (SERVO_MAX - SERVO_MIN) + SERVO_MIN));
 			motorComms.dutyCycles.at(i) = speeds(i)/MAX_MOTOR_SPEED;
 		}
 	}
-
-	return motorComms;
 }

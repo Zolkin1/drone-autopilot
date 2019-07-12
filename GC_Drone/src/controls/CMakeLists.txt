@@ -56,8 +56,7 @@ find_package (Eigen3 3.3 REQUIRED NO_MODULE)
 
 
 add_executable(controls2 src/motor_calibration.cpp)
-add_executable(mainController src/top_level_controller.cpp src/controller.cpp)# include/Eigen/Dense)
-
-target_link_libraries (mainController Eigen3::Eigen ${catkin_LIBRARIES})
+add_executable(mainController src/top_level_controller.cpp src/controller.cpp)
+target_link_libraries (mainController Eigen3::Eigen ${catkin_LIBRARIES} my_lib)
 
 target_link_libraries(controls2 ${catkin_LIBRARIES} my_lib)

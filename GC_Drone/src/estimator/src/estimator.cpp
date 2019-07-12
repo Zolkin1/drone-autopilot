@@ -1,6 +1,8 @@
 #include "estimator.h"
 
 
+using namespace sensors;
+
 int main(int argc, char **argv)
 {
 	ros::init(argc, argv, "estimator");
@@ -8,8 +10,8 @@ int main(int argc, char **argv)
 
 	ros::Subscriber imuSub = n.subscribe("imu_data", 1000, imuCallBack);
 	ros::Subscriber barometerSub = n.subscribe("barometer_data", 1000, barometerCallBack);
-
-	ros::Publisher est_state = n.advertise<estimator::quad_rotor_states>("estimated_states", 1000);
+	ros::Subscriber controlInputs = n.subscribe("human_input", 100, inputCallBack);
+	//ros::Publisher est_state = n.advertise<estimator::quad_rotor_states>("estimated_states", 1000);
 
 	ros::Rate loop_rate(10);
 
@@ -19,10 +21,16 @@ int main(int argc, char **argv)
 
 		//TODO: Implement the filter class
 		//Add states variable
-		filter.predict();
-		states = filter.update(acc, gyr, height);
+		kalmanFilter.predict(humanInputs);
+		for (int i = 0; i < 3; i++)
+		{
+			measurements(i, 0) = gyr.at(i);
+			//Still need to add gps data in
+			//measurements(i+3, 0) = gps.at(i);
+		}
+		states = kalmanFilter.update(measurements);
 
-		est_state.advertise(states);
+		//est_state.advertise(states);
 
 		ros::spinOnce();
 
@@ -47,5 +55,13 @@ void imuCallBack(const estimator::imu_data::ConstPtr& msg)
 //Recieves Barometer Data
 void barometerCallBack(const estimator::barometer_data::ConstPtr& msg)
 {
-	height = msg->data;
+	height = msg->height;
+}
+
+void inputCalBack(const estimator::human_inputs::ConstPtr& msg)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		humanInputs(i, 0) = msg->inputs.at(i);
+	}
 }
