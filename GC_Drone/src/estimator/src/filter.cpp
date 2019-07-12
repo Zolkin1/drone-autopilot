@@ -79,11 +79,13 @@ Filter::Filter(float dt)
 	Q.setIdentity();
 	Q *= 0.5;
 
+	//Will need to be adjusted
 	R.setIdentity();
 
 	//Need to change to a noise from sensor data sheets
 	//Should put in variable in class
-	//R *= 
+
+	//Needs to be adbjusted
 	P.setIdentity();
 	P *= 0.04;
 

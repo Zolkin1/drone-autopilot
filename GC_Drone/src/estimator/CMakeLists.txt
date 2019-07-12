@@ -22,6 +22,7 @@ add_message_files(
    motor_commands.msg
    barometer_data.msg
    human_inputs.msg
+   gps_data.msg
 )
 
 ## Generate added messages and services with any dependencies listed here
@@ -42,5 +43,5 @@ include_directories(
 link_directories( /include /include/Eigen)
 find_package (Eigen3 3.3 REQUIRED NO_MODULE)
 
-add_executable(estimator src/estimator.cpp src/filter.cpp)
+add_executable(estimator src/estimator.cpp src/filter.cpp src/quad_rotor_model.cpp)
 target_link_libraries(estimator Eigen3::Eigen ${catkin_LIBRARIES})
