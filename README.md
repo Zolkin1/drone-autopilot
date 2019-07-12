@@ -46,6 +46,7 @@ An nput node (either teleoperated or autonomous input) will publish a desired st
 
 
 # Controls
+Right now we are attempting to do full state feedback on the quadrotor drone. This involves taking inputs from the sensors and piping that through a kalman filter. The Kalaman Filter will give an optimal estimate of the states of the drone. There are 12 states (a derivation will be linked in a paper that has yet to be added to github, talk to @Zolkin1 for details right now). After we have an estimate of the 12 states then we are applying LQR (Linear Quadratic Regulator) control. This is a form of optimal control using modern control methods.
 
 # Project Management
 Current to-do's and issues are being tracked in GitHub through issues and/or the project tab.
