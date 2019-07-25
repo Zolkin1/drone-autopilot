@@ -7,8 +7,8 @@ int main(int argc, char **argv)
 	ros::NodeHandle n;
 
 	ros::Publisher imu_data_pub = n.advertise<estimator::imu_data>("imu_data", 1000);
-	//Set loop to 10 hz
-	ros::Rate loop_rate(10);
+	//Set loop to 100 hz
+	ros::Rate loop_rate(100);
 
 
 	estimator::imu_data msg;

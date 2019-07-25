@@ -37,55 +37,136 @@ Recieving messages:
 	est_state
 	des_state
 
-Publishing messages:
-	motor_commands
 */
 
-#include "ros/ros.h"
-//#include <Eigen/Dense>
-#include <estimator/quad_rotor_states.h>
-#include <estimator/imu_data.h>
-#include "controller.h"
+#include "top_level_controller.h"
 
-Controller mainController;
+using namespace Navio;
+
+std::unique_ptr <RCOutput> get_rcout()
+{
+    auto ptr = std::unique_ptr <RCOutput>{ new RCOutput_Navio2() };
+    return ptr;
+}
 
 void updateState (const estimator::quad_rotor_states::ConstPtr& msg)
 {
-	mainController.setDesiredState(msg);
+	quadrotorController.setDesiredState(msg);
 }
 
 void changeTarget (const estimator::quad_rotor_states::ConstPtr& msg)
 {
-	mainController.setEstimatedState(msg);
+	quadrotorController.setEstimatedState(msg);
 }
 
 int main(int argc, char **argv)
 {
+	if( !(pwm->initialize(PWM_OUTPUT)) ) 
+	{
+        return 1;
+    }
+
+    // Need to set fly somewhere else
+    fly = true;
+
+    pwm->set_frequency(PWM_OUTPUT, 50);
 
 	//Init all the ros stuff - this node will be a publish and subscriber
 	ros::init(argc, argv, "top_level_controller");
 	ros::NodeHandle n;
 
 	//Subscribe to the topics that publish a message: estimator::quad_rotor_states
+	//May want to move to a multi threaded spinner like async spinner...
 	ros::Subscriber est_state_sub = n.subscribe("est_state", 100, updateState);
 	ros::Subscriber des_state_sub = n.subscribe("des_state", 100, changeTarget);
 
-	ros::Publisher motor_comm_pub = n.advertise<estimator::imu_data>("motor_commands", 1000);
-    ros::Rate loop_rate(20);
+    ros::Rate loop_rate(200);
+
+    using namespace controller;
+
+    K <<  0,0,0,0,0,0,0,0,0,0,0,0,
+		  0,0,0,0,0,0,0,0,0,0,0,0,
+		  0,0,0,0,0,0,0,0,0,0,0,0,
+		  0,0,0,0,0,0,0,0,0,0,0,0; //Change the numbers to actual gain
+
+    quadrotorController.setK(K);
 
     while(ros::ok())
     {
-    	/*
-    	Perform controls math.
-    	Return 4 duty cycles.
-    	*/
+    	if (fly)
+    	{
+	    	/*
+	    	Perform controls math.
+	    	Return 4 duty cycles.
+	    	*/
+	    	controlInputs = quadrotorController.getInputs();
+	    	
+	    	speeds = mapInputsToSpeed(controlInputs, THRUST_FACTOR, ARM_LENGTH, DRAG_FACTOR);
 
-    	//Need to model the quad rotor. Do it in matlab.
-
-
-
+	    	speedToDutyCycles(speeds);
+    	}
+    	else
+    	{
+    		for (int i = 0; i < dutyCycles.dutyCycles.size(); i++)
+    		{
+    			pwm->set_duty_cycle(i, -SERVO_MIN);		
+    		}
+    	}
     	ros::spinOnce();
-    	return 0;
-    }
 
+    	loop_rate.sleep();
+    }
+    return 0;
+} 
+
+Eigen::Vector4f mapInputsToSpeed(Eigen::Vector4f controlInputs, float b, float l, float d)
+{
+	/*
+	Solve these equations:
+	b is thrust factor
+	l is distance from center of the drone to the rotor
+	d is drag factor
+	w is the speed of a rotor	
+
+	ft = b(w1^2 + w2^2 + w3^2 w4^2)
+	tx = bl(w3^2 - w1^2)
+	ty = bl(w4^2 - -w2^2)
+	tz = d(w2^2 + w4^2 - w1^2 - w3^2)
+	
+	return vector of w
+	*/
+
+	Eigen::Matrix4f A;
+	A << b, b, b, b,
+		-b*l, 0.0, b*l, 0.0,
+		0.0, -b*l, 0.0, b*l,
+		-d, d, -d, d;
+	
+	Eigen::Matrix4f invA = A.inverse();
+
+	//This calculation could be slow. Might want to change it if it causing issues
+	return invA.lu().solve(controlInputs);  
+}
+
+
+//Changes the motor PWM outputs
+void speedToDutyCycles(Eigen::Vector4f speeds)
+{
+	estimator::motor_commands motorComms;
+	for (int i = 0; i < speeds.size(); i++)
+	{
+		if (speeds(i) > 1.0) //Saturate on the high side
+		{
+			pwm->set_duty_cycle(i, SERVO_MAX);
+		}
+		else if (speeds(i) < -1.0) //Saturate on the low side
+		{
+			pwm->set_duty_cycle(i, -SERVO_MAX);
+		}
+		else
+		{
+			pwm->set_duty_cycle(i, ((speeds(i)/MAX_MOTOR_SPEED) * (SERVO_MAX - SERVO_MIN) + SERVO_MIN));
+			motorComms.dutyCycles.at(i) = speeds(i)/MAX_MOTOR_SPEED;
+		}
+	}
 }

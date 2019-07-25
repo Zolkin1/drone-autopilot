@@ -1,0 +1,16 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/zolkin/drone-autopilot/GC_Drone/src/controls/include/eigen/unsupported/test/mpreal_support.cpp"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"BuildUnsupported"
+		],
+		"name" : "mpreal_support"
+	}
+}

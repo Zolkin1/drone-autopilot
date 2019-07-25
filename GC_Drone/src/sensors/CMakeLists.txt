@@ -118,14 +118,19 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
+ /include/sensors/
+ /include/
   ${catkin_INCLUDE_DIRS}
 )
 
+set(LIB_SOURCES
+	include/sensors/MS5611.cpp
+	include/sensors/I2Cdev.cpp)
+
 ## Declare a C++ library
-# add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/imu.cpp
-# )
+ add_library(#${PROJECT_NAME}
+   sensor_drivers ${LIB_SOURCES}
+ )
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -200,5 +205,10 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-add_executable(sensors src/imu.cpp)
-target_link_libraries(sensors ${catkin_LIBRARIES})
+link_directories( /header-files )
+
+add_executable(imu src/imu.cpp)
+target_link_libraries(imu ${catkin_LIBRARIES})
+
+add_executable(barometer src/barometer.cpp)
+target_link_libraries(barometer ${catkin_LIBRARIES} sensor_drivers)

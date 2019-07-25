@@ -18,7 +18,11 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
    FILES
    imu_data.msg
-   quad_rotor_states.msg 
+   quad_rotor_states.msg
+   motor_commands.msg
+   barometer_data.msg
+   human_inputs.msg
+   gps_data.msg
 )
 
 ## Generate added messages and services with any dependencies listed here
@@ -32,7 +36,12 @@ catkin_package(
 
 include_directories(
   ${catkin_INCLUDE_DIRS}
+  /include
+  /inlcude/eigen
 )
 
-add_executable(estimator src/estimator.cpp)
-target_link_libraries(estimator ${catkin_LIBRARIES})
+link_directories( /include /include/Eigen)
+find_package (Eigen3 3.3 REQUIRED NO_MODULE)
+
+add_executable(estimator src/estimator.cpp src/filter.cpp src/quad_rotor_model.cpp)
+target_link_libraries(estimator Eigen3::Eigen ${catkin_LIBRARIES})

@@ -1,0 +1,7 @@
+float32 tow
+float32 longitude
+float32 latitude
+float32 height_above_ellipsoid
+float32 height_above_sea_level
+float32 horizontal_accuracy
+float32 vertical_accuracy
