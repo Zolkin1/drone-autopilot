@@ -31,3 +31,6 @@ Then plug in the ESC (should emit a 1-2-3 beep) then it should emit another beep
 # ROS Publish and Subscribe Messages
 
 # Controls
+
+# Base Station
+Terminal remote control application for very basic testing. Use wasd to control the left joystick and the arrow keys to control the right joystick. The 'q' key centers the left joystick along the vertical axis and the '/' key centers the right joystick along both axis.
