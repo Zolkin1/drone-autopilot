@@ -1,7 +1,8 @@
 /**
 This the main controller thread.
 This is responsible for:
-	- Reading the IMU, gps, and barometer data
+	- Read sensor data from buffers - sensors can run in their own threads. 
+	  Actually, maybe in the beginning just call sensor reads from here - worried about read times from hardware
 	- Filtering sensor data
 	- Estimating states with sensor data
 	- Calculating control inputs

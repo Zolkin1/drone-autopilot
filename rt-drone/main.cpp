@@ -10,10 +10,58 @@
 #include <stdlib.h>
 #include <sys/mman.h>
  
+struct period_info 
+{
+        struct timespec next_period;
+        long period_ns;
+};
+ 
+static void inc_period(struct period_info *pinfo) 
+{
+        pinfo->next_period.tv_nsec += pinfo->period_ns;
+ 
+        while (pinfo->next_period.tv_nsec >= 1000000000) 
+        {
+                /* timespec nsec overflow */
+                pinfo->next_period.tv_sec++;
+                pinfo->next_period.tv_nsec -= 1000000000;
+        }
+}
+ 
+static void periodic_task_init(struct period_info *pinfo)
+{
+        /* for simplicity, hardcoding a 1s period */
+        pinfo->period_ns = 1000000000;
+ 
+        clock_gettime(CLOCK_MONOTONIC, &(pinfo->next_period));
+}
+ 
+static void do_rt_task()
+{
+        printf("In cyclic task");
+}
+ 
+static void wait_rest_of_period(struct period_info *pinfo)
+{
+        inc_period(pinfo);
+ 
+        /* for simplicity, ignoring possibilities of signal wakes */
+        clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &pinfo->next_period, NULL);
+}
+
 void *thread_func(void *data)
 {
         /* Do RT specific stuff here */
 		printf("in thread_func");
+		struct 	period_info pinfo;
+		periodic_task_init(&pinfo);
+
+		while(1)
+		{
+			do_rt_task();
+			wait_rest_of_period(&pinfo);
+		}
+
         return NULL;
 }
  
@@ -25,6 +73,7 @@ int main(int argc, char* argv[])
         int ret;
  
         /* Lock memory */
+        /* Right now, need sudo privliges for this on Navio2*/
         if(mlockall(MCL_CURRENT|MCL_FUTURE) == -1) {
                 printf("mlockall failed: %m\n");
                 exit(-2);
