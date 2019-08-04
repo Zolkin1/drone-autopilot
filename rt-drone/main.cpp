@@ -38,7 +38,7 @@ static void periodic_task_init(struct period_info *pinfo)
  
 static void do_rt_task()
 {
-        printf("In cyclic task");
+        printf("In cyclic task\n");
 }
  
 static void wait_rest_of_period(struct period_info *pinfo)
@@ -71,7 +71,7 @@ int main(int argc, char* argv[])
         pthread_attr_t attr;
         pthread_t thread;
         int ret;
- 
+ 	printf("in main");
         /* Lock memory */
         /* Right now, need sudo privliges for this on Navio2*/
         if(mlockall(MCL_CURRENT|MCL_FUTURE) == -1) {
@@ -119,6 +119,7 @@ int main(int argc, char* argv[])
                 goto out;
         }
  
+	printf("joining thread");
         /* Join the thread and wait until it is done */
         ret = pthread_join(thread, NULL);
         if (ret)
