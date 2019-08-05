@@ -75,10 +75,11 @@ int main(int argc, char* argv[])
             exit(-2);
     }
 
-    printf("%i \n",SCHED_FIFO);
-    //char * states_fifo = "/tmp/states_fifo"; 
-    if (mkfifo("/tmp/states_fifo", 0666) < 0)
+    printf("%X \n",SCHED_FIFO);
+    char * states_fifo = "/tmp/states_fifo"; 
+    if (mkfifo(states_fifo, 0666) < 0)
     {
+        printf("Failed to make FIFO. Exiting.");
         return -1;
     }
 
