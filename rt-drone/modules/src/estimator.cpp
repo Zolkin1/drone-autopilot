@@ -25,6 +25,7 @@ void *estimator_thread(void *data)
         exit(-1);
     }
 
+    printf("start of while loop estimator. \n");
 	while(1)
 	{
 		barometer.refreshPressure();

@@ -65,7 +65,7 @@ out:
 
 int main(int argc, char* argv[])
 {
- 	printf("in main");
+ 	printf("in main \n");
 
     /* Lock memory */
     // This should lock memory for entire process, not just one thread

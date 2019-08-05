@@ -20,7 +20,7 @@ Need to add sensor mutexes in.
 
 void *control_ops_thread(void *data)
 {
-	printf("in control_ops");
+	printf("in control_ops\n");
 
 	struct 	period_info pinfo;
 	periodic_task_init(&pinfo, 1000000000);
@@ -36,6 +36,7 @@ void *control_ops_thread(void *data)
 		exit(-1);
 	}
 
+	printf("Start of while loop contorl ops.\n");
 	while(1)
 	{
 		read(_states_fifo, temp_data_bytes, sizeof(float));
