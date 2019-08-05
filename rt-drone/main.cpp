@@ -1,7 +1,4 @@
-/*                                                                  
- * POSIX Real Time Example
- * using a single pthread as RT thread
- */
+// NEED TO WRITE MAKEFILE TO COMPILE PROPERLY
  
 #include <limits.h>
 #include <pthread.h>
@@ -9,122 +6,97 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/mman.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+
+#include "thread_helpers.h"
+#include "MS5611.h"
+#include "control_ops.h"
+#include "estimator.h"
  
-struct period_info 
+pthread_attr_t initRTThread(int sched_policy, int sched_prior)
 {
-        struct timespec next_period;
-        long period_ns;
-};
- 
-static void inc_period(struct period_info *pinfo) 
-{
-        pinfo->next_period.tv_nsec += pinfo->period_ns;
- 
-        while (pinfo->next_period.tv_nsec >= 1000000000) 
-        {
-                /* timespec nsec overflow */
-                pinfo->next_period.tv_sec++;
-                pinfo->next_period.tv_nsec -= 1000000000;
-        }
-}
- 
-static void periodic_task_init(struct period_info *pinfo)
-{
-        /* for simplicity, hardcoding a 1s period */
-        pinfo->period_ns = 1000000000;
- 
-        clock_gettime(CLOCK_MONOTONIC, &(pinfo->next_period));
-}
- 
-static void do_rt_task()
-{
-        printf("In cyclic task\n");
-}
- 
-static void wait_rest_of_period(struct period_info *pinfo)
-{
-        inc_period(pinfo);
- 
-        /* for simplicity, ignoring possibilities of signal wakes */
-        clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &pinfo->next_period, NULL);
+    struct sched_param param;
+    pthread_attr_t attr;
+    int ret;
+
+    /* Initialize pthread attributes (default values) */
+    ret = pthread_attr_init(&attr);
+    if (ret) {
+            printf("init pthread attributes failed\n");
+            goto out;
+    }
+
+    /* Set a specific stack size  */
+    ret = pthread_attr_setstacksize(&attr, PTHREAD_STACK_MIN);
+    if (ret) {
+        printf("pthread setstacksize failed\n");
+        goto out;
+    }
+
+    /* Set scheduler policy and priority of pthread */
+    ret = pthread_attr_setschedpolicy(&attr, sched_policy);
+    if (ret) {
+            printf("pthread setschedpolicy failed\n");
+            goto out;
+    }
+
+    param.sched_priority = sched_prior;
+    ret = pthread_attr_setschedparam(&attr, &param);
+    if (ret) {
+            printf("pthread setschedparam failed\n");
+            goto out;
+    }
+
+    /* Use scheduling parameters of attr */
+    ret = pthread_attr_setinheritsched(&attr, PTHREAD_EXPLICIT_SCHED);
+    if (ret) {
+            printf("pthread setinheritsched failed\n");
+            goto out;
+    }
+
+    return attr;
+
+out:
+    exit(1);
 }
 
-void *thread_func(void *data)
-{
-        /* Do RT specific stuff here */
-		printf("in thread_func");
-		struct 	period_info pinfo;
-		periodic_task_init(&pinfo);
-
-		while(1)
-		{
-			do_rt_task();
-			wait_rest_of_period(&pinfo);
-		}
-
-        return NULL;
-}
- 
 int main(int argc, char* argv[])
 {
-        struct sched_param param;
-        pthread_attr_t attr;
-        pthread_t thread;
-        int ret;
  	printf("in main");
-        /* Lock memory */
-        /* Right now, need sudo privliges for this on Navio2*/
-        if(mlockall(MCL_CURRENT|MCL_FUTURE) == -1) {
-                printf("mlockall failed: %m\n");
-                exit(-2);
-        }
- 
-        /* Initialize pthread attributes (default values) */
-        ret = pthread_attr_init(&attr);
-        if (ret) {
-                printf("init pthread attributes failed\n");
-                goto out;
-        }
- 
-        /* Set a specific stack size  */
-        ret = pthread_attr_setstacksize(&attr, PTHREAD_STACK_MIN);
-        if (ret) {
-            printf("pthread setstacksize failed\n");
+
+    /* Lock memory */
+    // This should lock memory for entire process, not just one thread
+    /* Right now, need sudo privliges for this on Navio2*/
+    if(mlockall(MCL_CURRENT|MCL_FUTURE) == -1) {
+            printf("mlockall failed: %m\n");
+            exit(-2);
+    }
+
+    char * states_fifo = "/tmp/states_fifo"; 
+    mkfifo(states_fifo, 0666);
+
+    pthread_t control_ops;
+    pthread_t estimator;
+
+    pthread_attr_t attr_control_ops = initRTThread(SCHED_FIFO, 80);
+    pthread_attr_t attr_estimator = initRTThread(SCHED_FIFO, 70);
+
+    int ret = pthread_create(&control_ops, &attr_control_ops, control_ops_thread, NULL); //Pass the sensor struct in here instead of NULL
+    if (ret) {
+            printf("create pthread control_ops failed\n");
             goto out;
-        }
- 
-        /* Set scheduler policy and priority of pthread */
-        ret = pthread_attr_setschedpolicy(&attr, SCHED_FIFO);
-        if (ret) {
-                printf("pthread setschedpolicy failed\n");
-                goto out;
-        }
-        param.sched_priority = 80;
-        ret = pthread_attr_setschedparam(&attr, &param);
-        if (ret) {
-                printf("pthread setschedparam failed\n");
-                goto out;
-        }
-        /* Use scheduling parameters of attr */
-        ret = pthread_attr_setinheritsched(&attr, PTHREAD_EXPLICIT_SCHED);
-        if (ret) {
-                printf("pthread setinheritsched failed\n");
-                goto out;
-        }
- 
-        /* Create a pthread with specified attributes */
-        ret = pthread_create(&thread, &attr, thread_func, NULL);
-        if (ret) {
-                printf("create pthread failed\n");
-                goto out;
-        }
- 
-	printf("joining thread");
-        /* Join the thread and wait until it is done */
-        ret = pthread_join(thread, NULL);
-        if (ret)
-                printf("join pthread failed: %m\n");
- 
-out:
-        return ret;
+    }
+
+    ret = pthread_create(&estimator, &attr_estimator, estimator_thread, NULL); //Change NULL to a pointer to the barometer object
+    if (ret) {
+            printf("create pthread barometer failed\n");
+            goto out;
+    }
+    return ret;
+
+out:    
+    return ret;
 }
