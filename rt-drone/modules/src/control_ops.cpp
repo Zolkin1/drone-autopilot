@@ -23,7 +23,7 @@ void *control_ops_thread(void *data)
 	printf("in control_ops\n");
 
 	struct 	period_info pinfo;
-	periodic_task_init(&pinfo, 1000000000);
+	periodic_task_init(&pinfo, 100000000);
 
     char temp_data_bytes[sizeof(float)];
     float temp;
@@ -40,6 +40,7 @@ void *control_ops_thread(void *data)
 
 	while(1)
 	{
+		printf("In estimator loop\n");
 		if (read(_states_fifo, temp_data_bytes, sizeof(float)) < 0)
 		{
 			printf("Failed to read from fifo. Exiting.");

@@ -9,7 +9,7 @@ void *estimator_thread(void *data)
 {
     printf("in estimator");
     struct  period_info pinfo;
-    periodic_task_init(&pinfo, 1000000000);
+    periodic_task_init(&pinfo, 100000000);
 
 
     MS5611 barometer;
@@ -31,6 +31,7 @@ void *estimator_thread(void *data)
     printf("start of while loop estimator. \n");
 	while(1)
 	{
+        printf("in while loop\n");
 		barometer.refreshPressure();
         usleep(10000); // Waiting for pressure data ready
         barometer.readPressure();
