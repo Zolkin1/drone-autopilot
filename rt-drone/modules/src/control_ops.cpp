@@ -67,6 +67,7 @@ void *control_ops_thread(void *data)
 
 	struct 	period_info pinfo;
 	periodic_task_init(&pinfo, 100000000);
+	printf("Initialized the periodic thread\n");
 
     char temp_data_bytes[sizeof(float)];
     float temp;

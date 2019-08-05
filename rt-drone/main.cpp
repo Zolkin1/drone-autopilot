@@ -97,6 +97,11 @@ int main(int argc, char* argv[])
             printf("create pthread control_ops failed\n");
             goto out;
     }
+    ret = pthread_join(control_ops, NULL);
+    if (ret)
+    {
+        printf("Failed to join thread. \n");
+    }
 
     return ret;
 
