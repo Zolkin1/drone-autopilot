@@ -39,7 +39,12 @@ void *control_ops_thread(void *data)
 	printf("Start of while loop contorl ops.\n");
 	while(1)
 	{
-		read(_states_fifo, temp_data_bytes, sizeof(float));
+		if (read(_states_fifo, temp_data_bytes, sizeof(float)) < 0)
+		{
+			printf("Failed to read from fifo. Exiting.");
+			exit(-1);
+		}
+		
 		memcpy(&temp, temp_data_bytes, sizeof(float));
 
 		//Test to read data from sensors:
