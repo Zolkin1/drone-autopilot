@@ -75,8 +75,12 @@ int main(int argc, char* argv[])
             exit(-2);
     }
 
+    printf("%i \n",SCHED_FIFO);
     //char * states_fifo = "/tmp/states_fifo"; 
-    mkfifo("/tmp/states_fifo", 0666);
+    if (mkfifo("/tmp/states_fifo", 0666) < 0)
+    {
+        return -1;
+    }
 
     pthread_t control_ops;
     pthread_t estimator;
@@ -97,6 +101,7 @@ int main(int argc, char* argv[])
             printf("create pthread control_ops failed\n");
             goto out;
     }
+
     ret = pthread_join(control_ops, NULL);
     if (ret)
     {
