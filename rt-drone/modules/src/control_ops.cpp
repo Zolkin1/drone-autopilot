@@ -72,8 +72,8 @@ void *control_ops_thread(void *data)
     char temp_data_bytes[sizeof(float)];
     float temp;
 
-    //char * states_fifo = "/tmp/states_fifo";  // Not sure if this should be hardcoded
-	int _states_fifo = open("states_fifo", O_RDONLY);
+    char * states_fifo = "states_fifo";  // Not sure if this should be hardcoded
+	int _states_fifo = open(states_fifo, O_RDONLY);
 	if (_states_fifo < 0)
 	{
 		printf("Failed to open States FIFO. Exiting.");
