@@ -31,8 +31,6 @@ stdio.h
 -
 string.h
 -
-thread_helpers.h
-../modules/inc/thread_helpers.h
 MS5611.h
 ../modules/inc/MS5611.h
 
@@ -97,6 +95,18 @@ estimator.h
 /home/zach/drone-autopilot/rt-drone/estimator.h
 
 /home/zach/drone-autopilot/rt-drone/modules/src/control_ops.cpp
+limits.h
+-
+pthread.h
+-
+sched.h
+-
+stdio.h
+-
+stdlib.h
+-
+sys/mman.h
+-
 control_ops.h
 /home/zach/drone-autopilot/rt-drone/modules/src/control_ops.h
 
@@ -105,6 +115,4 @@ estimator.h
 /home/zach/drone-autopilot/rt-drone/modules/src/estimator.h
 
 /home/zach/drone-autopilot/rt-drone/util/src/thread_helpers.cpp
-thread_helpers.h
-/home/zach/drone-autopilot/rt-drone/util/src/thread_helpers.h
 
