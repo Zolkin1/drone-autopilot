@@ -75,8 +75,7 @@ int main(int argc, char* argv[])
             exit(-2);
     }
 
-    printf("%X \n",SCHED_FIFO);
-    char * states_fifo = "/tmp/states_fifo"; 
+    char * states_fifo = "states_fifo"; 
     if (mkfifo(states_fifo, 0666) < 0)
     {
         printf("Failed to make FIFO. Exiting.");
