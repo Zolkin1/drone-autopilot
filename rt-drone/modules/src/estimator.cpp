@@ -13,6 +13,7 @@ void *estimator_thread(void *data)
 
 
     MS5611 barometer;
+    barometer.initialize();
     char temp_data_bytes[sizeof(float)];
     char pressure_data_bytes[sizeof(float)];	
     float temp;
