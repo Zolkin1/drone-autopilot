@@ -23,7 +23,7 @@ Need to add sensor mutexes in.
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/mman.h>
-
+#include <cerrno>
 
 #include "control_ops.h"
 
@@ -76,7 +76,8 @@ void *control_ops_thread(void *data)
 	int _states_fifo = open("states_fifo", O_RDONLY);
 	if (_states_fifo < 0)
 	{
-		printf("Failed to open States FIFO. Exiting.");
+		printf("Failed to open States FIFO. Exiting.\n");
+		printf("%i\n", errno);
 		exit(-1);
 	}
 
