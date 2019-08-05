@@ -7,19 +7,21 @@ Should move to a queue system - prob write a wrapper for pipes or something like
 
 void *estimator_thread(void *data)
 {
-    printf("in estimator`");
+    printf("in estimator");
     struct  period_info pinfo;
     periodic_task_init(&pinfo, 1000000000);
 
 
     MS5611 barometer;
     barometer.initialize();
+    printf("Baro initialzed\n");
+
     char temp_data_bytes[sizeof(float)];
     char pressure_data_bytes[sizeof(float)];	
     float temp;
 
-    char * states_fifo = "/tmp/states_fifo"; // Not sure if this should be hardcoded
-    int _states_fifo = open(states_fifo, O_WRONLY);
+    //char * states_fifo = "/tmp/states_fifo"; // Not sure if this should be hardcoded
+    int _states_fifo = open("/tmp/states_fifo", O_WRONLY);
     if (_states_fifo < 0)
     {
         printf("Failed to open States FIFO. Exiting.");

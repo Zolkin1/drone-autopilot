@@ -75,8 +75,8 @@ int main(int argc, char* argv[])
             exit(-2);
     }
 
-    char * states_fifo = "/tmp/states_fifo"; 
-    mkfifo(states_fifo, 0666);
+    //char * states_fifo = "/tmp/states_fifo"; 
+    mkfifo("/tmp/states_fifo", 0666);
 
     pthread_t control_ops;
     pthread_t estimator;

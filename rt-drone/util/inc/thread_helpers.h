@@ -9,8 +9,8 @@
 
 struct period_info 
 {
-        struct timespec next_period;
-        long period_ns;
+    struct timespec next_period;
+    long period_ns;
 };
 
 void inc_period(struct period_info *pinfo);
