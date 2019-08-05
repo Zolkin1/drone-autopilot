@@ -1,4 +1,4 @@
-/*#include "thread_helpers.h"
+#include "thread_helpers.h"
 
 void inc_period(struct period_info *pinfo) 
 {
@@ -25,4 +25,4 @@ void wait_rest_of_period(struct period_info *pinfo)
  
         // for simplicity, ignoring possibilities of signal wakes
         clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &pinfo->next_period, NULL);
-}*/
+}

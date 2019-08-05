@@ -85,6 +85,8 @@ sys/stat.h
 -
 sys/types.h
 -
+cerrno
+-
 thread_helpers.h
 /home/zach/drone-autopilot/rt-drone/thread_helpers.h
 MS5611.h
@@ -107,12 +109,18 @@ stdlib.h
 -
 sys/mman.h
 -
+cerrno
+-
 control_ops.h
 /home/zach/drone-autopilot/rt-drone/modules/src/control_ops.h
+thread_helpers.h
+/home/zach/drone-autopilot/rt-drone/modules/src/thread_helpers.h
 
 /home/zach/drone-autopilot/rt-drone/modules/src/estimator.cpp
 estimator.h
 /home/zach/drone-autopilot/rt-drone/modules/src/estimator.h
 
 /home/zach/drone-autopilot/rt-drone/util/src/thread_helpers.cpp
+thread_helpers.h
+/home/zach/drone-autopilot/rt-drone/util/src/thread_helpers.h
 

@@ -11,6 +11,7 @@ CMakeFiles/main.out.dir/main.cpp.o: ../main.cpp
 CMakeFiles/main.out.dir/modules/src/control_ops.cpp.o: ../device-drivers/inc/I2Cdev.h
 CMakeFiles/main.out.dir/modules/src/control_ops.cpp.o: ../device-drivers/inc/MS5611.h
 CMakeFiles/main.out.dir/modules/src/control_ops.cpp.o: ../modules/inc/control_ops.h
+CMakeFiles/main.out.dir/modules/src/control_ops.cpp.o: ../util/inc/thread_helpers.h
 CMakeFiles/main.out.dir/modules/src/control_ops.cpp.o: ../modules/src/control_ops.cpp
 
 CMakeFiles/main.out.dir/modules/src/estimator.cpp.o: ../device-drivers/inc/I2Cdev.h
@@ -19,5 +20,6 @@ CMakeFiles/main.out.dir/modules/src/estimator.cpp.o: ../modules/inc/estimator.h
 CMakeFiles/main.out.dir/modules/src/estimator.cpp.o: ../util/inc/thread_helpers.h
 CMakeFiles/main.out.dir/modules/src/estimator.cpp.o: ../modules/src/estimator.cpp
 
+CMakeFiles/main.out.dir/util/src/thread_helpers.cpp.o: ../util/inc/thread_helpers.h
 CMakeFiles/main.out.dir/util/src/thread_helpers.cpp.o: ../util/src/thread_helpers.cpp
 

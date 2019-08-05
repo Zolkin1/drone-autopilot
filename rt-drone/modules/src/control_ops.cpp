@@ -26,40 +26,8 @@ Need to add sensor mutexes in.
 #include <cerrno>
 
 #include "control_ops.h"
+#include "thread_helpers.h"
 
-struct period_info 
-{
-    struct timespec next_period;
-    long period_ns;
-};
-
-static void inc_period(struct period_info *pinfo) 
-{
-        pinfo->next_period.tv_nsec += pinfo->period_ns;
- 
-        while (pinfo->next_period.tv_nsec >= 1000000000) 
-        {
-                /* timespec nsec overflow */
-                pinfo->next_period.tv_sec++;
-                pinfo->next_period.tv_nsec -= 1000000000;
-        }
-}
- 
-static void periodic_task_init(struct period_info *pinfo, int period)
-{
-        /* for simplicity, hardcoding a 1s period */
-        pinfo->period_ns = period;
- 
-        clock_gettime(CLOCK_MONOTONIC, &(pinfo->next_period));
-}
- 
-static void wait_rest_of_period(struct period_info *pinfo)
-{
-        inc_period(pinfo);
- 
-        /* for simplicity, ignoring possibilities of signal wakes */
-        clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &pinfo->next_period, NULL);
-}
 
 void *control_ops_thread(void *data)
 {
@@ -85,7 +53,7 @@ void *control_ops_thread(void *data)
 
 	while(1)
 	{
-		printf("In estimator loop\n");
+		printf("In control loop\n");
 		if (read(_states_fifo, temp_data_bytes, sizeof(float)) < 0)
 		{
 			printf("Failed to read from fifo. Exiting.");

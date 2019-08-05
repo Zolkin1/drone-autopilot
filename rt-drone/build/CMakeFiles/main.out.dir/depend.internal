@@ -12,6 +12,7 @@ CMakeFiles/main.out.dir/modules/src/control_ops.cpp.o
  ../device-drivers/inc/I2Cdev.h
  ../device-drivers/inc/MS5611.h
  ../modules/inc/control_ops.h
+ ../util/inc/thread_helpers.h
  /home/zach/drone-autopilot/rt-drone/modules/src/control_ops.cpp
 CMakeFiles/main.out.dir/modules/src/estimator.cpp.o
  ../device-drivers/inc/I2Cdev.h
@@ -20,4 +21,5 @@ CMakeFiles/main.out.dir/modules/src/estimator.cpp.o
  ../util/inc/thread_helpers.h
  /home/zach/drone-autopilot/rt-drone/modules/src/estimator.cpp
 CMakeFiles/main.out.dir/util/src/thread_helpers.cpp.o
+ ../util/inc/thread_helpers.h
  /home/zach/drone-autopilot/rt-drone/util/src/thread_helpers.cpp

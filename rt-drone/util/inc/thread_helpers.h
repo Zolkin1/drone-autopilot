@@ -1,4 +1,4 @@
-/*#pragma once
+#pragma once
 
 #include <limits.h>
 #include <pthread.h>
@@ -15,4 +15,4 @@ struct period_info
 
 void inc_period(struct period_info *pinfo);
 void periodic_task_init(struct period_info *pinfo, int period);
-void wait_rest_of_period(struct period_info *pinfo);*/
+void wait_rest_of_period(struct period_info *pinfo);
