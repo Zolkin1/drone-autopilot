@@ -90,14 +90,14 @@ int main(int argc, char* argv[])
     pthread_attr_t attr_control_ops = initRTThread(SCHED_FIFO, 80);
     pthread_attr_t attr_estimator = initRTThread(SCHED_FIFO, 70);
 
-    /*int ret = pthread_create(&estimator, &attr_estimator, estimator_thread, NULL); //Change NULL to a pointer to the barometer object
+    int ret = pthread_create(&estimator, &attr_estimator, estimator_thread, NULL);
     if (ret) 
     {
             printf("create pthread barometer failed\n");
             goto out;
-    }*/
+    }
 
-    int ret = pthread_create(&control_ops, &attr_control_ops, control_ops_thread, NULL); //Pass the sensor struct in here instead of NULL
+    ret = pthread_create(&control_ops, &attr_control_ops, control_ops_thread, NULL);
     if (ret) 
     {
             printf("create pthread control_ops failed\n");
@@ -105,6 +105,12 @@ int main(int argc, char* argv[])
     }
 
     ret = pthread_join(control_ops, NULL);
+    if (ret)
+    {
+        printf("Failed to join thread. \n");
+    }
+
+    ret = pthread_join(estimator, NULL);
     if (ret)
     {
         printf("Failed to join thread. \n");

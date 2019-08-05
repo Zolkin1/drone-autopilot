@@ -41,7 +41,7 @@ void *control_ops_thread(void *data)
     float temp;
 
     char * states_fifo = "states_fifo";  // Not sure if this should be hardcoded
-	int _states_fifo = open("states_fifo", O_RDWR);
+	int _states_fifo = open("states_fifo", O_RDONLY);
 	if (_states_fifo < 0)
 	{
 		printf("Failed to open States FIFO. Exiting.\n");
