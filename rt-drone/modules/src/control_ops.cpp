@@ -15,7 +15,7 @@ less than 2ms.
 /*
 Need to add sensor mutexes in.
 */
-#pragma once
+//#pragma once
 
 #include <limits.h>
 #include <pthread.h>
@@ -33,7 +33,7 @@ struct period_info
     long period_ns;
 };
 
-void inc_period(struct period_info *pinfo) 
+static void inc_period(struct period_info *pinfo) 
 {
         pinfo->next_period.tv_nsec += pinfo->period_ns;
  
@@ -45,7 +45,7 @@ void inc_period(struct period_info *pinfo)
         }
 }
  
-void periodic_task_init(struct period_info *pinfo, int period)
+static void periodic_task_init(struct period_info *pinfo, int period)
 {
         /* for simplicity, hardcoding a 1s period */
         pinfo->period_ns = period;
@@ -53,7 +53,7 @@ void periodic_task_init(struct period_info *pinfo, int period)
         clock_gettime(CLOCK_MONOTONIC, &(pinfo->next_period));
 }
  
-void wait_rest_of_period(struct period_info *pinfo)
+static void wait_rest_of_period(struct period_info *pinfo)
 {
         inc_period(pinfo);
  

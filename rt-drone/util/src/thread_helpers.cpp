@@ -1,4 +1,4 @@
-#include "thread_helpers.h"
+/*#include "thread_helpers.h"
 
 void inc_period(struct period_info *pinfo) 
 {
@@ -6,7 +6,7 @@ void inc_period(struct period_info *pinfo)
  
         while (pinfo->next_period.tv_nsec >= 1000000000) 
         {
-                /* timespec nsec overflow */
+                // timespec nsec overflow 
                 pinfo->next_period.tv_sec++;
                 pinfo->next_period.tv_nsec -= 1000000000;
         }
@@ -14,7 +14,6 @@ void inc_period(struct period_info *pinfo)
  
 void periodic_task_init(struct period_info *pinfo, int period)
 {
-        /* for simplicity, hardcoding a 1s period */
         pinfo->period_ns = period;
  
         clock_gettime(CLOCK_MONOTONIC, &(pinfo->next_period));
@@ -24,6 +23,6 @@ void wait_rest_of_period(struct period_info *pinfo)
 {
         inc_period(pinfo);
  
-        /* for simplicity, ignoring possibilities of signal wakes */
+        // for simplicity, ignoring possibilities of signal wakes
         clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &pinfo->next_period, NULL);
-}
+}*/

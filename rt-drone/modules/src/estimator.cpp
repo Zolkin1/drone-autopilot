@@ -4,7 +4,7 @@ Will read it into a shared barometer object so we dont need to mess with pipe an
 Should move to a queue system - prob write a wrapper for pipes or something like that. 
 */
 #include "estimator.h"
-
+/*
 void *estimator_thread(void *data)
 {
     printf("in estimator");
@@ -53,4 +53,4 @@ void *estimator_thread(void *data)
         wait_rest_of_period(&pinfo);
 	}
         return NULL;
-}
+}*/

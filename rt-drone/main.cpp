@@ -84,14 +84,14 @@ int main(int argc, char* argv[])
     pthread_attr_t attr_control_ops = initRTThread(SCHED_FIFO, 80);
     pthread_attr_t attr_estimator = initRTThread(SCHED_FIFO, 70);
 
-    int ret = pthread_create(&estimator, &attr_estimator, estimator_thread, NULL); //Change NULL to a pointer to the barometer object
+    /*int ret = pthread_create(&estimator, &attr_estimator, estimator_thread, NULL); //Change NULL to a pointer to the barometer object
     if (ret) 
     {
             printf("create pthread barometer failed\n");
             goto out;
-    }
+    }*/
 
-    ret = pthread_create(&control_ops, &attr_control_ops, control_ops_thread, NULL); //Pass the sensor struct in here instead of NULL
+    int ret = pthread_create(&control_ops, &attr_control_ops, control_ops_thread, NULL); //Pass the sensor struct in here instead of NULL
     if (ret) 
     {
             printf("create pthread control_ops failed\n");
