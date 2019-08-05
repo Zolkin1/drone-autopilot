@@ -77,13 +77,12 @@ int main(int argc, char* argv[])
     }
 
     char * states_fifo = "states_fifo"; 
-    if (mkfifo(states_fifo, 0666) < 0)
+    /*if (mkfifo(states_fifo, 0666) < 0)
     {
-        printf("Failed to make FIFO. Exiting. \n");
+        printf("Failed to make FIFO. \n");
         printf("%i\n", errno);
-
         return -1;
-    }
+    }*/
 
     pthread_t control_ops;
     pthread_t estimator;
