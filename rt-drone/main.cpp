@@ -10,6 +10,7 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <cerrno>
 
 #include "thread_helpers.h"
 #include "MS5611.h"
@@ -78,7 +79,9 @@ int main(int argc, char* argv[])
     char * states_fifo = "states_fifo"; 
     if (mkfifo(states_fifo, 0666) < 0)
     {
-        printf("Failed to make FIFO. Exiting.");
+        printf("Failed to make FIFO. Exiting. \n");
+        printf("%i\n", errno);
+
         return -1;
     }
 
