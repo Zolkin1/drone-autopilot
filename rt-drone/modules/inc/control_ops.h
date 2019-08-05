@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "thread_helpers.h"
+//#include "thread_helpers.h"
 #include "MS5611.h"
 
 void *control_ops_thread(void *data);
