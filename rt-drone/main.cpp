@@ -77,6 +77,7 @@ int main(int argc, char* argv[])
     }
 
     char * states_fifo = "states_fifo"; 
+    //Only run this if you have yet to make the fifo
     /*if (mkfifo(states_fifo, 0666) < 0)
     {
         printf("Failed to make FIFO. \n");

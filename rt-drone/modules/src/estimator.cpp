@@ -20,11 +20,11 @@ void *estimator_thread(void *data)
     char pressure_data_bytes[sizeof(float)];	
     float temp;
 
-    //char * states_fifo = "/tmp/states_fifo"; // Not sure if this should be hardcoded
     int _states_fifo = open("states_fifo", O_WRONLY);
     if (_states_fifo < 0)
     {
-        printf("Failed to open States FIFO. Exiting.");
+        printf("Failed to open States FIFO. Exiting.");     
+        printf("%i\n", errno);
         exit(-1);
     }
 

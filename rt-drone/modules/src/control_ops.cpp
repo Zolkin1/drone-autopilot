@@ -12,22 +12,7 @@ Right now, this node will attempt to be run around 200hz. This means that loop r
 less than 2ms.
 **/
 
-/*
-Need to add sensor mutexes in.
-*/
-//#pragma once
-
-#include <limits.h>
-#include <pthread.h>
-#include <sched.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/mman.h>
-#include <cerrno>
-
 #include "control_ops.h"
-#include "thread_helpers.h"
-
 
 void *control_ops_thread(void *data)
 {
