@@ -7,10 +7,21 @@
 #include <stdlib.h>
 #include <sys/mman.h>
 
+#define ESTIMATED_FIFO "estimated_states_fifo"
+#define COMMANDED_FIFO "commanded_states_fifo"
+
 struct period_info 
 {
     struct timespec next_period;
     long period_ns;
+};
+
+struct state_struct
+{
+	float thrust;
+	float roll;
+	float pitch;
+	float yaw;
 };
 
 void inc_period(struct period_info *pinfo);

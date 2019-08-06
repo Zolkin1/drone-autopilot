@@ -25,32 +25,71 @@ void *control_ops_thread(void *data)
     char temp_data_bytes[sizeof(float)];
     float temp;
 
-    char * states_fifo = "states_fifo";  // Not sure if this should be hardcoded
-	int _states_fifo = open("states_fifo", O_RDONLY);
-	if (_states_fifo < 0)
-	{
-		printf("Failed to open States FIFO. Exiting.\n");
-		printf("%i\n", errno);
-		exit(-1);
-	}
+    struct state_struct states_estimated;
+    struct state_struct states_commanded;
+
+	int _states_estimated_fifo = open_fifo(ESTIMATED_FIFO, O_RDONLY);
+	int _states_commanded_fifo = open_fifo(COMMANDED_FIFO, O_RDONLY); //need to implement the communication thread first
+
+	int control_mode;
 
 	printf("Start of while loop control ops.\n");
 
 	while(1)
 	{
-		printf("In control loop\n");
-		if (read(_states_fifo, temp_data_bytes, sizeof(float)) < 0)
+		switch (control_mode)
 		{
-			printf("Failed to read from fifo. Exiting.");
-			exit(-1);
+			case CALIBRATION_MODE:
+				read_fifo_states(_states_estimated_fifo, states_estimated);
+				break;
+
+			case TELEOPERATED_MODE:
+				read_fifo_states(_states_estimated_fifo, states_estimated);
+				read_fifo_states(_states_commanded_fifo, states_commanded);
+
+				control_roll();
+				control_pitch();
+				control_yaw();
+				control_throttle();
+
+				break;
+
+			case AUTONOMOUS_MODE:
+				break;
+
+			case EMERGENCY_MODE:
+				break;
 		}
 
-		memcpy(&temp, temp_data_bytes, sizeof(float));
-
-		//Test to read data from sensors:
-		printf("Temperature (C): %f\n", temp);
+		printf("In control loop\n");
+		
 		wait_rest_of_period(&pinfo);
 	}
 }
 
+int read_fifo_states(int fifo, struct state_struct &states)
+{
+	char temp_bytes[sizeof(struct state_struct)];
 
+	if(read(fifo, temp_bytes, sizeof(struct state_struct)) < 0)
+	{
+		printf("Failed to read fifo.\n");
+		printf("%i\n", errno);
+		return errno;
+	}
+	memcpy(&states, temp_bytes, sizeof(struct state_struct));
+}
+
+int open_fifo(char* fifo, int status)
+{
+	int fd = open(fifo, status);
+
+	if (fd < 0)
+	{
+		printf("Failed to open States FIFO. Exiting.\n");
+		printf("%i\n", errno);
+		return(errno);
+	}
+
+	return fd;
+}

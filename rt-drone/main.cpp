@@ -76,14 +76,20 @@ int main(int argc, char* argv[])
             exit(-2);
     }
 
-    char * states_fifo = "states_fifo"; 
     //Only run this if you have yet to make the fifo
-    /*if (mkfifo(states_fifo, 0666) < 0)
+    if (mkfifo(ESTIMATED_FIFO, 0666) < 0)
     {
         printf("Failed to make FIFO. \n");
         printf("%i\n", errno);
         return -1;
-    }*/
+    }
+
+    if (mkfifo(COMMANDED_FIFO, 0666) < 0)
+    {
+        printf("Failed to make FIFO. \n");
+        printf("%i\n", errno);
+        return -1;
+    }
 
     pthread_t control_ops;
     pthread_t estimator;

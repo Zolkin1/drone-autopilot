@@ -1,0 +1,4 @@
+/*
+Handle UDP and RC IO in thread. The commanded states should just output the mux of the two.
+Probably make estop an interrupt into the control thread. E stop comes from SCP over UDP.
+*/

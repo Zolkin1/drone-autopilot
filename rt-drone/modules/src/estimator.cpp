@@ -19,8 +19,9 @@ void *estimator_thread(void *data)
     char temp_data_bytes[sizeof(float)];
     char pressure_data_bytes[sizeof(float)];	
     float temp;
+    float 
 
-    int _states_fifo = open("states_fifo", O_WRONLY);
+    _states_fifo = open(ESTIMATED_FIFO, O_WRONLY);
     if (_states_fifo < 0)
     {
         printf("Failed to open States FIFO. Exiting.");     
