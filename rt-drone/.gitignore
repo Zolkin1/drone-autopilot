@@ -46,4 +46,4 @@ _deps
 
 *.includecache
 
-/build
+/build*
