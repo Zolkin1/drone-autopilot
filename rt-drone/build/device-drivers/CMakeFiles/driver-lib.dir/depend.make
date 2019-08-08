@@ -8,3 +8,22 @@ device-drivers/CMakeFiles/driver-lib.dir/src/MS5611.cpp.o: ../device-drivers/inc
 device-drivers/CMakeFiles/driver-lib.dir/src/MS5611.cpp.o: ../device-drivers/inc/MS5611.h
 device-drivers/CMakeFiles/driver-lib.dir/src/MS5611.cpp.o: ../device-drivers/src/MS5611.cpp
 
+device-drivers/CMakeFiles/driver-lib.dir/src/PWM.cpp.o: ../device-drivers/inc/PWM.h
+device-drivers/CMakeFiles/driver-lib.dir/src/PWM.cpp.o: ../device-drivers/inc/Util.h
+device-drivers/CMakeFiles/driver-lib.dir/src/PWM.cpp.o: ../device-drivers/src/PWM.cpp
+
+device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.o: ../device-drivers/inc/I2Cdev.h
+device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.o: ../device-drivers/inc/PCA9685.h
+device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.o: ../device-drivers/inc/RCOutput.h
+device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.o: ../device-drivers/inc/RCOutput_Navio.h
+device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.o: ../device-drivers/inc/gpio.h
+device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.o: ../device-drivers/src/RCOutput_Navio.cpp
+
+device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.o: ../device-drivers/inc/PWM.h
+device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.o: ../device-drivers/inc/RCOutput.h
+device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.o: ../device-drivers/inc/RCOutput_Navio2.h
+device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.o: ../device-drivers/src/RCOutput_Navio2.cpp
+
+device-drivers/CMakeFiles/driver-lib.dir/src/Util.cpp.o: ../device-drivers/inc/Util.h
+device-drivers/CMakeFiles/driver-lib.dir/src/Util.cpp.o: ../device-drivers/src/Util.cpp
+

@@ -5,4 +5,7 @@ add_library(controls-lib
 	src/quadrotor_controller.cpp)
 
 target_include_directories(controls-lib PUBLIC
-	inc)
+	inc
+	../util/inc)
+
+target_link_libraries(controls-lib driver-lib Eigen3::Eigen)

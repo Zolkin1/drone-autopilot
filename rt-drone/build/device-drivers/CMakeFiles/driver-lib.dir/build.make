@@ -105,19 +105,123 @@ device-drivers/CMakeFiles/driver-lib.dir/src/I2Cdev.cpp.o.provides: device-drive
 device-drivers/CMakeFiles/driver-lib.dir/src/I2Cdev.cpp.o.provides.build: device-drivers/CMakeFiles/driver-lib.dir/src/I2Cdev.cpp.o
 
 
+device-drivers/CMakeFiles/driver-lib.dir/src/Util.cpp.o: device-drivers/CMakeFiles/driver-lib.dir/flags.make
+device-drivers/CMakeFiles/driver-lib.dir/src/Util.cpp.o: ../device-drivers/src/Util.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zach/drone-autopilot/rt-drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object device-drivers/CMakeFiles/driver-lib.dir/src/Util.cpp.o"
+	cd /home/zach/drone-autopilot/rt-drone/build/device-drivers && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/driver-lib.dir/src/Util.cpp.o -c /home/zach/drone-autopilot/rt-drone/device-drivers/src/Util.cpp
+
+device-drivers/CMakeFiles/driver-lib.dir/src/Util.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/driver-lib.dir/src/Util.cpp.i"
+	cd /home/zach/drone-autopilot/rt-drone/build/device-drivers && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zach/drone-autopilot/rt-drone/device-drivers/src/Util.cpp > CMakeFiles/driver-lib.dir/src/Util.cpp.i
+
+device-drivers/CMakeFiles/driver-lib.dir/src/Util.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/driver-lib.dir/src/Util.cpp.s"
+	cd /home/zach/drone-autopilot/rt-drone/build/device-drivers && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zach/drone-autopilot/rt-drone/device-drivers/src/Util.cpp -o CMakeFiles/driver-lib.dir/src/Util.cpp.s
+
+device-drivers/CMakeFiles/driver-lib.dir/src/Util.cpp.o.requires:
+
+.PHONY : device-drivers/CMakeFiles/driver-lib.dir/src/Util.cpp.o.requires
+
+device-drivers/CMakeFiles/driver-lib.dir/src/Util.cpp.o.provides: device-drivers/CMakeFiles/driver-lib.dir/src/Util.cpp.o.requires
+	$(MAKE) -f device-drivers/CMakeFiles/driver-lib.dir/build.make device-drivers/CMakeFiles/driver-lib.dir/src/Util.cpp.o.provides.build
+.PHONY : device-drivers/CMakeFiles/driver-lib.dir/src/Util.cpp.o.provides
+
+device-drivers/CMakeFiles/driver-lib.dir/src/Util.cpp.o.provides.build: device-drivers/CMakeFiles/driver-lib.dir/src/Util.cpp.o
+
+
+device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.o: device-drivers/CMakeFiles/driver-lib.dir/flags.make
+device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.o: ../device-drivers/src/RCOutput_Navio.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zach/drone-autopilot/rt-drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.o"
+	cd /home/zach/drone-autopilot/rt-drone/build/device-drivers && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.o -c /home/zach/drone-autopilot/rt-drone/device-drivers/src/RCOutput_Navio.cpp
+
+device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.i"
+	cd /home/zach/drone-autopilot/rt-drone/build/device-drivers && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zach/drone-autopilot/rt-drone/device-drivers/src/RCOutput_Navio.cpp > CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.i
+
+device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.s"
+	cd /home/zach/drone-autopilot/rt-drone/build/device-drivers && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zach/drone-autopilot/rt-drone/device-drivers/src/RCOutput_Navio.cpp -o CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.s
+
+device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.o.requires:
+
+.PHONY : device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.o.requires
+
+device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.o.provides: device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.o.requires
+	$(MAKE) -f device-drivers/CMakeFiles/driver-lib.dir/build.make device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.o.provides.build
+.PHONY : device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.o.provides
+
+device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.o.provides.build: device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.o
+
+
+device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.o: device-drivers/CMakeFiles/driver-lib.dir/flags.make
+device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.o: ../device-drivers/src/RCOutput_Navio2.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zach/drone-autopilot/rt-drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.o"
+	cd /home/zach/drone-autopilot/rt-drone/build/device-drivers && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.o -c /home/zach/drone-autopilot/rt-drone/device-drivers/src/RCOutput_Navio2.cpp
+
+device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.i"
+	cd /home/zach/drone-autopilot/rt-drone/build/device-drivers && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zach/drone-autopilot/rt-drone/device-drivers/src/RCOutput_Navio2.cpp > CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.i
+
+device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.s"
+	cd /home/zach/drone-autopilot/rt-drone/build/device-drivers && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zach/drone-autopilot/rt-drone/device-drivers/src/RCOutput_Navio2.cpp -o CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.s
+
+device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.o.requires:
+
+.PHONY : device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.o.requires
+
+device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.o.provides: device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.o.requires
+	$(MAKE) -f device-drivers/CMakeFiles/driver-lib.dir/build.make device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.o.provides.build
+.PHONY : device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.o.provides
+
+device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.o.provides.build: device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.o
+
+
+device-drivers/CMakeFiles/driver-lib.dir/src/PWM.cpp.o: device-drivers/CMakeFiles/driver-lib.dir/flags.make
+device-drivers/CMakeFiles/driver-lib.dir/src/PWM.cpp.o: ../device-drivers/src/PWM.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zach/drone-autopilot/rt-drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object device-drivers/CMakeFiles/driver-lib.dir/src/PWM.cpp.o"
+	cd /home/zach/drone-autopilot/rt-drone/build/device-drivers && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/driver-lib.dir/src/PWM.cpp.o -c /home/zach/drone-autopilot/rt-drone/device-drivers/src/PWM.cpp
+
+device-drivers/CMakeFiles/driver-lib.dir/src/PWM.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/driver-lib.dir/src/PWM.cpp.i"
+	cd /home/zach/drone-autopilot/rt-drone/build/device-drivers && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zach/drone-autopilot/rt-drone/device-drivers/src/PWM.cpp > CMakeFiles/driver-lib.dir/src/PWM.cpp.i
+
+device-drivers/CMakeFiles/driver-lib.dir/src/PWM.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/driver-lib.dir/src/PWM.cpp.s"
+	cd /home/zach/drone-autopilot/rt-drone/build/device-drivers && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zach/drone-autopilot/rt-drone/device-drivers/src/PWM.cpp -o CMakeFiles/driver-lib.dir/src/PWM.cpp.s
+
+device-drivers/CMakeFiles/driver-lib.dir/src/PWM.cpp.o.requires:
+
+.PHONY : device-drivers/CMakeFiles/driver-lib.dir/src/PWM.cpp.o.requires
+
+device-drivers/CMakeFiles/driver-lib.dir/src/PWM.cpp.o.provides: device-drivers/CMakeFiles/driver-lib.dir/src/PWM.cpp.o.requires
+	$(MAKE) -f device-drivers/CMakeFiles/driver-lib.dir/build.make device-drivers/CMakeFiles/driver-lib.dir/src/PWM.cpp.o.provides.build
+.PHONY : device-drivers/CMakeFiles/driver-lib.dir/src/PWM.cpp.o.provides
+
+device-drivers/CMakeFiles/driver-lib.dir/src/PWM.cpp.o.provides.build: device-drivers/CMakeFiles/driver-lib.dir/src/PWM.cpp.o
+
+
 # Object files for target driver-lib
 driver__lib_OBJECTS = \
 "CMakeFiles/driver-lib.dir/src/MS5611.cpp.o" \
-"CMakeFiles/driver-lib.dir/src/I2Cdev.cpp.o"
+"CMakeFiles/driver-lib.dir/src/I2Cdev.cpp.o" \
+"CMakeFiles/driver-lib.dir/src/Util.cpp.o" \
+"CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.o" \
+"CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.o" \
+"CMakeFiles/driver-lib.dir/src/PWM.cpp.o"
 
 # External object files for target driver-lib
 driver__lib_EXTERNAL_OBJECTS =
 
 device-drivers/libdriver-lib.a: device-drivers/CMakeFiles/driver-lib.dir/src/MS5611.cpp.o
 device-drivers/libdriver-lib.a: device-drivers/CMakeFiles/driver-lib.dir/src/I2Cdev.cpp.o
+device-drivers/libdriver-lib.a: device-drivers/CMakeFiles/driver-lib.dir/src/Util.cpp.o
+device-drivers/libdriver-lib.a: device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.o
+device-drivers/libdriver-lib.a: device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.o
+device-drivers/libdriver-lib.a: device-drivers/CMakeFiles/driver-lib.dir/src/PWM.cpp.o
 device-drivers/libdriver-lib.a: device-drivers/CMakeFiles/driver-lib.dir/build.make
 device-drivers/libdriver-lib.a: device-drivers/CMakeFiles/driver-lib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zach/drone-autopilot/rt-drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libdriver-lib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zach/drone-autopilot/rt-drone/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX static library libdriver-lib.a"
 	cd /home/zach/drone-autopilot/rt-drone/build/device-drivers && $(CMAKE_COMMAND) -P CMakeFiles/driver-lib.dir/cmake_clean_target.cmake
 	cd /home/zach/drone-autopilot/rt-drone/build/device-drivers && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/driver-lib.dir/link.txt --verbose=$(VERBOSE)
 
@@ -128,6 +232,10 @@ device-drivers/CMakeFiles/driver-lib.dir/build: device-drivers/libdriver-lib.a
 
 device-drivers/CMakeFiles/driver-lib.dir/requires: device-drivers/CMakeFiles/driver-lib.dir/src/MS5611.cpp.o.requires
 device-drivers/CMakeFiles/driver-lib.dir/requires: device-drivers/CMakeFiles/driver-lib.dir/src/I2Cdev.cpp.o.requires
+device-drivers/CMakeFiles/driver-lib.dir/requires: device-drivers/CMakeFiles/driver-lib.dir/src/Util.cpp.o.requires
+device-drivers/CMakeFiles/driver-lib.dir/requires: device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.o.requires
+device-drivers/CMakeFiles/driver-lib.dir/requires: device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.o.requires
+device-drivers/CMakeFiles/driver-lib.dir/requires: device-drivers/CMakeFiles/driver-lib.dir/src/PWM.cpp.o.requires
 
 .PHONY : device-drivers/CMakeFiles/driver-lib.dir/requires
 

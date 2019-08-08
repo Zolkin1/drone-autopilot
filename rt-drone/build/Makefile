@@ -136,6 +136,19 @@ driver-lib/fast:
 	$(MAKE) -f device-drivers/CMakeFiles/driver-lib.dir/build.make device-drivers/CMakeFiles/driver-lib.dir/build
 .PHONY : driver-lib/fast
 
+#=============================================================================
+# Target rules for targets named controls-lib
+
+# Build rule for target.
+controls-lib: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 controls-lib
+.PHONY : controls-lib
+
+# fast build rule for target.
+controls-lib/fast:
+	$(MAKE) -f controls/CMakeFiles/controls-lib.dir/build.make controls/CMakeFiles/controls-lib.dir/build
+.PHONY : controls-lib/fast
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -162,6 +175,33 @@ main.s: main.cpp.s
 main.cpp.s:
 	$(MAKE) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/main.cpp.s
 .PHONY : main.cpp.s
+
+modules/src/communication.o: modules/src/communication.cpp.o
+
+.PHONY : modules/src/communication.o
+
+# target to build an object file
+modules/src/communication.cpp.o:
+	$(MAKE) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/modules/src/communication.cpp.o
+.PHONY : modules/src/communication.cpp.o
+
+modules/src/communication.i: modules/src/communication.cpp.i
+
+.PHONY : modules/src/communication.i
+
+# target to preprocess a source file
+modules/src/communication.cpp.i:
+	$(MAKE) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/modules/src/communication.cpp.i
+.PHONY : modules/src/communication.cpp.i
+
+modules/src/communication.s: modules/src/communication.cpp.s
+
+.PHONY : modules/src/communication.s
+
+# target to generate assembly for a file
+modules/src/communication.cpp.s:
+	$(MAKE) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/modules/src/communication.cpp.s
+.PHONY : modules/src/communication.cpp.s
 
 modules/src/control_ops.o: modules/src/control_ops.cpp.o
 
@@ -254,9 +294,13 @@ help:
 	@echo "... main.out"
 	@echo "... edit_cache"
 	@echo "... driver-lib"
+	@echo "... controls-lib"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... modules/src/communication.o"
+	@echo "... modules/src/communication.i"
+	@echo "... modules/src/communication.s"
 	@echo "... modules/src/control_ops.o"
 	@echo "... modules/src/control_ops.i"
 	@echo "... modules/src/control_ops.s"

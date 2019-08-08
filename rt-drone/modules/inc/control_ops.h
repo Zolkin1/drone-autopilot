@@ -9,6 +9,8 @@
 
 #include "thread_helpers.h"
 #include "MS5611.h"
+#include "quad_rotor_controller.h"
+#include "constants.h"
 
 static const int CALIBRATION_MODE = 0;
 static const int TELEOPERATED_MODE = 1;

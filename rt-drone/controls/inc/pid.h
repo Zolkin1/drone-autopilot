@@ -11,8 +11,8 @@ public:
 	float kp;
 	float ki;
 	float kd;
-	float _antiwindup;
+	float _sat_level;
 
 	float calculatePID(float error);
-	pid(float p, float i, float d, float dt, float antiwindup);
-}
+	pid(float p, float i, float d, float dt, float sat_level);
+};

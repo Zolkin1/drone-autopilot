@@ -7,5 +7,6 @@
 
 #include "thread_helpers.h"
 #include "MS5611.h"
+#include "constants.h"
 
 void *estimator_thread(void *data);

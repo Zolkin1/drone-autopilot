@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/zach/drone-autopilot/rt-drone/modules/inc -I/home/zach/drone-autopilot/rt-drone/util/inc -I/home/zach/drone-autopilot/rt-drone/device-drivers/inc 
+CXX_INCLUDES = -I/home/zach/drone-autopilot/rt-drone/modules/inc -I/home/zach/drone-autopilot/rt-drone/util/inc -I/home/zach/drone-autopilot/rt-drone/device-drivers/inc -I/home/zach/drone-autopilot/rt-drone/controls/inc -I/home/zach/drone-autopilot/rt-drone/controls/../util/inc -isystem /usr/include/eigen3 
 

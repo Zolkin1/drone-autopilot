@@ -8,7 +8,8 @@ add_executable(main.out
 	main.cpp
 	modules/src/control_ops.cpp
 	modules/src/estimator.cpp
-	util/src/thread_helpers.cpp)
+	util/src/thread_helpers.cpp
+	modules/src/communication.cpp)
 
 target_include_directories(main.out PUBLIC
 	modules/inc

@@ -16,6 +16,8 @@
 #include "MS5611.h"
 #include "control_ops.h"
 #include "estimator.h"
+#include "constants.h"
+#include "communication.h"
  
 pthread_attr_t initRTThread(int sched_policy, int sched_prior)
 {
@@ -91,11 +93,20 @@ int main(int argc, char* argv[])
         return -1;
     }
 
+    if (mkfifo(MODE_FIFO, 0666) < 0)
+    {
+        printf("Failed to make FIFO. \n");
+        printf("%i\n", errno);
+        return -1;
+    }
+
     pthread_t control_ops;
     pthread_t estimator;
+    pthread_t communication;
 
     pthread_attr_t attr_control_ops = initRTThread(SCHED_FIFO, 80);
     pthread_attr_t attr_estimator = initRTThread(SCHED_FIFO, 70);
+    pthread_attr_t attr_communication = initRTThread(SCHED_FIFO, 60); //E stop will need to be an interrupt
 
     int ret = pthread_create(&estimator, &attr_estimator, estimator_thread, NULL);
     if (ret) 
@@ -111,6 +122,13 @@ int main(int argc, char* argv[])
             goto out;
     }
 
+    ret = pthread_create(&communication, &attr_communication, communication_thread, NULL);
+    if (ret) 
+    {
+            printf("create pthread control_ops failed\n");
+            goto out;
+    }
+
     ret = pthread_join(control_ops, NULL);
     if (ret)
     {
@@ -119,6 +137,12 @@ int main(int argc, char* argv[])
 
     ret = pthread_join(estimator, NULL);
     if (ret)
+    {
+        printf("Failed to join thread. \n");
+    }
+
+    ret = pthread_join(communication, NULL);
+    if (ret) 
     {
         printf("Failed to join thread. \n");
     }

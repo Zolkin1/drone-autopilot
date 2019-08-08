@@ -9,7 +9,7 @@ void *estimator_thread(void *data)
 {
     printf("in estimator");
     struct  period_info pinfo;
-    periodic_task_init(&pinfo, 1000000000);
+    periodic_task_init(&pinfo, LOOP_PERIOD);
 
 
     MS5611 barometer;
@@ -19,9 +19,8 @@ void *estimator_thread(void *data)
     char temp_data_bytes[sizeof(float)];
     char pressure_data_bytes[sizeof(float)];	
     float temp;
-    float 
 
-    _states_fifo = open(ESTIMATED_FIFO, O_WRONLY);
+    int _states_fifo = open(ESTIMATED_FIFO, O_WRONLY);
     if (_states_fifo < 0)
     {
         printf("Failed to open States FIFO. Exiting.");     

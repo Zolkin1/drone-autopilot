@@ -40,6 +40,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/zach/drone-autopilot/rt-drone/build/device-drivers/cmake_install.cmake")
+  include("/home/zach/drone-autopilot/rt-drone/build/controls/cmake_install.cmake")
 
 endif()
 

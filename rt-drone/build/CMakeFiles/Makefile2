@@ -64,9 +64,10 @@ CMAKE_BINARY_DIR = /home/zach/drone-autopilot/rt-drone/build
 
 # All Build rule for target.
 CMakeFiles/main.out.dir/all: device-drivers/CMakeFiles/driver-lib.dir/all
+CMakeFiles/main.out.dir/all: controls/CMakeFiles/controls-lib.dir/all
 	$(MAKE) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/depend
 	$(MAKE) -f CMakeFiles/main.out.dir/build.make CMakeFiles/main.out.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zach/drone-autopilot/rt-drone/build/CMakeFiles --progress-num=4,5,6,7,8 "Built target main.out"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zach/drone-autopilot/rt-drone/build/CMakeFiles --progress-num=11,12,13,14,15,16 "Built target main.out"
 .PHONY : CMakeFiles/main.out.dir/all
 
 # Include target in all.
@@ -76,7 +77,7 @@ all: CMakeFiles/main.out.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/main.out.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zach/drone-autopilot/rt-drone/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zach/drone-autopilot/rt-drone/build/CMakeFiles 16
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/main.out.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zach/drone-autopilot/rt-drone/build/CMakeFiles 0
 .PHONY : CMakeFiles/main.out.dir/rule
@@ -121,7 +122,7 @@ device-drivers/preinstall:
 device-drivers/CMakeFiles/driver-lib.dir/all:
 	$(MAKE) -f device-drivers/CMakeFiles/driver-lib.dir/build.make device-drivers/CMakeFiles/driver-lib.dir/depend
 	$(MAKE) -f device-drivers/CMakeFiles/driver-lib.dir/build.make device-drivers/CMakeFiles/driver-lib.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zach/drone-autopilot/rt-drone/build/CMakeFiles --progress-num=1,2,3 "Built target driver-lib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zach/drone-autopilot/rt-drone/build/CMakeFiles --progress-num=4,5,6,7,8,9,10 "Built target driver-lib"
 .PHONY : device-drivers/CMakeFiles/driver-lib.dir/all
 
 # Include target in all.
@@ -131,7 +132,7 @@ all: device-drivers/CMakeFiles/driver-lib.dir/all
 
 # Build rule for subdir invocation for target.
 device-drivers/CMakeFiles/driver-lib.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/zach/drone-autopilot/rt-drone/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zach/drone-autopilot/rt-drone/build/CMakeFiles 7
 	$(MAKE) -f CMakeFiles/Makefile2 device-drivers/CMakeFiles/driver-lib.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zach/drone-autopilot/rt-drone/build/CMakeFiles 0
 .PHONY : device-drivers/CMakeFiles/driver-lib.dir/rule
@@ -148,6 +149,61 @@ device-drivers/CMakeFiles/driver-lib.dir/clean:
 
 # clean rule for target.
 clean: device-drivers/CMakeFiles/driver-lib.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory controls
+
+# Convenience name for "all" pass in the directory.
+controls/all: controls/CMakeFiles/controls-lib.dir/all
+
+.PHONY : controls/all
+
+# Convenience name for "clean" pass in the directory.
+controls/clean: controls/CMakeFiles/controls-lib.dir/clean
+
+.PHONY : controls/clean
+
+# Convenience name for "preinstall" pass in the directory.
+controls/preinstall:
+
+.PHONY : controls/preinstall
+
+#=============================================================================
+# Target rules for target controls/CMakeFiles/controls-lib.dir
+
+# All Build rule for target.
+controls/CMakeFiles/controls-lib.dir/all: device-drivers/CMakeFiles/driver-lib.dir/all
+	$(MAKE) -f controls/CMakeFiles/controls-lib.dir/build.make controls/CMakeFiles/controls-lib.dir/depend
+	$(MAKE) -f controls/CMakeFiles/controls-lib.dir/build.make controls/CMakeFiles/controls-lib.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zach/drone-autopilot/rt-drone/build/CMakeFiles --progress-num=1,2,3 "Built target controls-lib"
+.PHONY : controls/CMakeFiles/controls-lib.dir/all
+
+# Include target in all.
+all: controls/CMakeFiles/controls-lib.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+controls/CMakeFiles/controls-lib.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zach/drone-autopilot/rt-drone/build/CMakeFiles 10
+	$(MAKE) -f CMakeFiles/Makefile2 controls/CMakeFiles/controls-lib.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/zach/drone-autopilot/rt-drone/build/CMakeFiles 0
+.PHONY : controls/CMakeFiles/controls-lib.dir/rule
+
+# Convenience name for target.
+controls-lib: controls/CMakeFiles/controls-lib.dir/rule
+
+.PHONY : controls-lib
+
+# clean rule for target.
+controls/CMakeFiles/controls-lib.dir/clean:
+	$(MAKE) -f controls/CMakeFiles/controls-lib.dir/build.make controls/CMakeFiles/controls-lib.dir/clean
+.PHONY : controls/CMakeFiles/controls-lib.dir/clean
+
+# clean rule for target.
+clean: controls/CMakeFiles/controls-lib.dir/clean
 
 .PHONY : clean
 

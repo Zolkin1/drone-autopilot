@@ -19,7 +19,7 @@ void *control_ops_thread(void *data)
 	printf("in control_ops\n");
 
 	struct 	period_info pinfo;
-	periodic_task_init(&pinfo, 1000000000);
+	periodic_task_init(&pinfo, LOOP_PERIOD);
 	printf("Initialized the periodic thread\n");
 
     char temp_data_bytes[sizeof(float)];
@@ -29,32 +29,49 @@ void *control_ops_thread(void *data)
     struct state_struct states_commanded;
 
 	int _states_estimated_fifo = open_fifo(ESTIMATED_FIFO, O_RDONLY);
-	int _states_commanded_fifo = open_fifo(COMMANDED_FIFO, O_RDONLY); //need to implement the communication thread first
+	int _states_commanded_fifo = open_fifo(COMMANDED_FIFO, O_RDONLY);
+	int _mode_fifo = open_fifo(MODE_FIFO, O_RDONLY);
 
-	int control_mode;
+	int control_mode = TELEOPERATED_MODE;
+
+	quadRotorController controller;
 
 	printf("Start of while loop control ops.\n");
 
 	while(1)
 	{
+		char temp_bytes[sizeof(int)];
+		if(read(_mode_fifo, temp_bytes, sizeof(int)) < 0)
+		{
+			printf("Failed to read fifo.\n");
+			printf("%i\n", errno);
+		}
+		memcpy(&control_mode, temp_bytes, sizeof(int));
+
 		switch (control_mode)
 		{
 			case CALIBRATION_MODE:
+				//Calibrate all sensors
 				read_fifo_states(_states_estimated_fifo, states_estimated);
+
+				//Turn on/check/calibrate all motors
+
 				break;
 
 			case TELEOPERATED_MODE:
 				read_fifo_states(_states_estimated_fifo, states_estimated);
 				read_fifo_states(_states_commanded_fifo, states_commanded);
 
-				control_roll();
-				control_pitch();
-				control_yaw();
-				control_throttle();
+				controller.control_to_state(states_estimated, states_commanded);
 
 				break;
 
 			case AUTONOMOUS_MODE:
+				read_fifo_states(_states_estimated_fifo, states_estimated);
+				read_fifo_states(_states_commanded_fifo, states_commanded);
+
+				controller.control_to_state_velocity(states_estimated, states_commanded);
+
 				break;
 
 			case EMERGENCY_MODE:
@@ -67,6 +84,7 @@ void *control_ops_thread(void *data)
 	}
 }
 
+//Can probably implement this as a template
 int read_fifo_states(int fifo, struct state_struct &states)
 {
 	char temp_bytes[sizeof(struct state_struct)];

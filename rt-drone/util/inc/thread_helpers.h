@@ -9,6 +9,7 @@
 
 #define ESTIMATED_FIFO "estimated_states_fifo"
 #define COMMANDED_FIFO "commanded_states_fifo"
+#define MODE_FIFO "mode_fifo"
 
 struct period_info 
 {

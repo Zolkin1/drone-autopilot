@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/main.out.dir/modules/src/control_ops.cpp.o"
   "CMakeFiles/main.out.dir/modules/src/estimator.cpp.o"
   "CMakeFiles/main.out.dir/util/src/thread_helpers.cpp.o"
+  "CMakeFiles/main.out.dir/modules/src/communication.cpp.o"
   "main.out.pdb"
   "main.out"
 )

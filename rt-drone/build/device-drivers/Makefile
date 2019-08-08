@@ -179,6 +179,114 @@ src/MS5611.cpp.s:
 	cd /home/zach/drone-autopilot/rt-drone/build && $(MAKE) -f device-drivers/CMakeFiles/driver-lib.dir/build.make device-drivers/CMakeFiles/driver-lib.dir/src/MS5611.cpp.s
 .PHONY : src/MS5611.cpp.s
 
+src/PWM.o: src/PWM.cpp.o
+
+.PHONY : src/PWM.o
+
+# target to build an object file
+src/PWM.cpp.o:
+	cd /home/zach/drone-autopilot/rt-drone/build && $(MAKE) -f device-drivers/CMakeFiles/driver-lib.dir/build.make device-drivers/CMakeFiles/driver-lib.dir/src/PWM.cpp.o
+.PHONY : src/PWM.cpp.o
+
+src/PWM.i: src/PWM.cpp.i
+
+.PHONY : src/PWM.i
+
+# target to preprocess a source file
+src/PWM.cpp.i:
+	cd /home/zach/drone-autopilot/rt-drone/build && $(MAKE) -f device-drivers/CMakeFiles/driver-lib.dir/build.make device-drivers/CMakeFiles/driver-lib.dir/src/PWM.cpp.i
+.PHONY : src/PWM.cpp.i
+
+src/PWM.s: src/PWM.cpp.s
+
+.PHONY : src/PWM.s
+
+# target to generate assembly for a file
+src/PWM.cpp.s:
+	cd /home/zach/drone-autopilot/rt-drone/build && $(MAKE) -f device-drivers/CMakeFiles/driver-lib.dir/build.make device-drivers/CMakeFiles/driver-lib.dir/src/PWM.cpp.s
+.PHONY : src/PWM.cpp.s
+
+src/RCOutput_Navio.o: src/RCOutput_Navio.cpp.o
+
+.PHONY : src/RCOutput_Navio.o
+
+# target to build an object file
+src/RCOutput_Navio.cpp.o:
+	cd /home/zach/drone-autopilot/rt-drone/build && $(MAKE) -f device-drivers/CMakeFiles/driver-lib.dir/build.make device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.o
+.PHONY : src/RCOutput_Navio.cpp.o
+
+src/RCOutput_Navio.i: src/RCOutput_Navio.cpp.i
+
+.PHONY : src/RCOutput_Navio.i
+
+# target to preprocess a source file
+src/RCOutput_Navio.cpp.i:
+	cd /home/zach/drone-autopilot/rt-drone/build && $(MAKE) -f device-drivers/CMakeFiles/driver-lib.dir/build.make device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.i
+.PHONY : src/RCOutput_Navio.cpp.i
+
+src/RCOutput_Navio.s: src/RCOutput_Navio.cpp.s
+
+.PHONY : src/RCOutput_Navio.s
+
+# target to generate assembly for a file
+src/RCOutput_Navio.cpp.s:
+	cd /home/zach/drone-autopilot/rt-drone/build && $(MAKE) -f device-drivers/CMakeFiles/driver-lib.dir/build.make device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.s
+.PHONY : src/RCOutput_Navio.cpp.s
+
+src/RCOutput_Navio2.o: src/RCOutput_Navio2.cpp.o
+
+.PHONY : src/RCOutput_Navio2.o
+
+# target to build an object file
+src/RCOutput_Navio2.cpp.o:
+	cd /home/zach/drone-autopilot/rt-drone/build && $(MAKE) -f device-drivers/CMakeFiles/driver-lib.dir/build.make device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.o
+.PHONY : src/RCOutput_Navio2.cpp.o
+
+src/RCOutput_Navio2.i: src/RCOutput_Navio2.cpp.i
+
+.PHONY : src/RCOutput_Navio2.i
+
+# target to preprocess a source file
+src/RCOutput_Navio2.cpp.i:
+	cd /home/zach/drone-autopilot/rt-drone/build && $(MAKE) -f device-drivers/CMakeFiles/driver-lib.dir/build.make device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.i
+.PHONY : src/RCOutput_Navio2.cpp.i
+
+src/RCOutput_Navio2.s: src/RCOutput_Navio2.cpp.s
+
+.PHONY : src/RCOutput_Navio2.s
+
+# target to generate assembly for a file
+src/RCOutput_Navio2.cpp.s:
+	cd /home/zach/drone-autopilot/rt-drone/build && $(MAKE) -f device-drivers/CMakeFiles/driver-lib.dir/build.make device-drivers/CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.s
+.PHONY : src/RCOutput_Navio2.cpp.s
+
+src/Util.o: src/Util.cpp.o
+
+.PHONY : src/Util.o
+
+# target to build an object file
+src/Util.cpp.o:
+	cd /home/zach/drone-autopilot/rt-drone/build && $(MAKE) -f device-drivers/CMakeFiles/driver-lib.dir/build.make device-drivers/CMakeFiles/driver-lib.dir/src/Util.cpp.o
+.PHONY : src/Util.cpp.o
+
+src/Util.i: src/Util.cpp.i
+
+.PHONY : src/Util.i
+
+# target to preprocess a source file
+src/Util.cpp.i:
+	cd /home/zach/drone-autopilot/rt-drone/build && $(MAKE) -f device-drivers/CMakeFiles/driver-lib.dir/build.make device-drivers/CMakeFiles/driver-lib.dir/src/Util.cpp.i
+.PHONY : src/Util.cpp.i
+
+src/Util.s: src/Util.cpp.s
+
+.PHONY : src/Util.s
+
+# target to generate assembly for a file
+src/Util.cpp.s:
+	cd /home/zach/drone-autopilot/rt-drone/build && $(MAKE) -f device-drivers/CMakeFiles/driver-lib.dir/build.make device-drivers/CMakeFiles/driver-lib.dir/src/Util.cpp.s
+.PHONY : src/Util.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -194,6 +302,18 @@ help:
 	@echo "... src/MS5611.o"
 	@echo "... src/MS5611.i"
 	@echo "... src/MS5611.s"
+	@echo "... src/PWM.o"
+	@echo "... src/PWM.i"
+	@echo "... src/PWM.s"
+	@echo "... src/RCOutput_Navio.o"
+	@echo "... src/RCOutput_Navio.i"
+	@echo "... src/RCOutput_Navio.s"
+	@echo "... src/RCOutput_Navio2.o"
+	@echo "... src/RCOutput_Navio2.i"
+	@echo "... src/RCOutput_Navio2.s"
+	@echo "... src/Util.o"
+	@echo "... src/Util.i"
+	@echo "... src/Util.s"
 .PHONY : help
 
 

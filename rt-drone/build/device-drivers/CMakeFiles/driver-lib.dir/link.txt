@@ -1,2 +1,2 @@
-/usr/bin/ar qc libdriver-lib.a  CMakeFiles/driver-lib.dir/src/MS5611.cpp.o CMakeFiles/driver-lib.dir/src/I2Cdev.cpp.o
+/usr/bin/ar qc libdriver-lib.a  CMakeFiles/driver-lib.dir/src/MS5611.cpp.o CMakeFiles/driver-lib.dir/src/I2Cdev.cpp.o CMakeFiles/driver-lib.dir/src/Util.cpp.o CMakeFiles/driver-lib.dir/src/RCOutput_Navio.cpp.o CMakeFiles/driver-lib.dir/src/RCOutput_Navio2.cpp.o CMakeFiles/driver-lib.dir/src/PWM.cpp.o
 /usr/bin/ranlib libdriver-lib.a
