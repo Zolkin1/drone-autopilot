@@ -3,6 +3,7 @@ project(rt-drone)
 
 add_subdirectory(device-drivers)
 add_subdirectory(controls)
+add_subdirectory(estimation)
 
 add_executable(main.out
 	main.cpp
@@ -18,4 +19,5 @@ target_include_directories(main.out PUBLIC
 target_link_libraries(main.out
 	driver-lib
 	pthread
-	controls-lib)
+	controls-lib
+	estimation-lib)

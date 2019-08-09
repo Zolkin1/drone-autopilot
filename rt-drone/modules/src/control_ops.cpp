@@ -12,6 +12,8 @@ Right now, this node will attempt to be run around 200hz. This means that loop r
 less than 2ms.
 **/
 
+// Need to move fifo reads into c style arrays
+
 #include "control_ops.h"
 
 void *control_ops_thread(void *data)

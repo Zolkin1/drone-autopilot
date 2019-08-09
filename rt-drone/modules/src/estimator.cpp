@@ -20,6 +20,22 @@ void *estimator_thread(void *data)
     char pressure_data_bytes[sizeof(float)];	
     float temp;
 
+    auto ptr = std::unique_ptr <InertialSensor>{ new MPU9250() };
+    AHRS ahrs(move(ptr));
+    ahrs.setGyroOffset();
+
+    float roll;
+    float pitch;
+    float yaw;
+    float thrust;
+
+    float ax, ay, az;
+
+    //struct state_struct estimated_states;
+    float states[4];
+
+    float dt = 1/LOOP_PERIOD;
+
     int _states_fifo = open(ESTIMATED_FIFO, O_WRONLY);
     if (_states_fifo < 0)
     {
@@ -32,7 +48,21 @@ void *estimator_thread(void *data)
 	while(1)
 	{
         printf("in while loop\n");
-		barometer.refreshPressure();
+
+        //Use AHRS algo to update pos/orientation with IMU
+        ahrs.updateIMU(dt);
+        ahrs.getEuler(&roll, &pitch, &yaw);
+
+        states[0] = roll;
+        states[1] = pitch;
+        states[2] = yaw;
+
+        //RN get thrust just from IMU
+        ptr->read_accelerometer(&ax, &ay, &az);
+        //thrust = az;
+        states[3] = az;
+
+		/*barometer.refreshPressure();
         usleep(10000); // Waiting for pressure data ready
         barometer.readPressure();
 
@@ -43,13 +73,17 @@ void *estimator_thread(void *data)
         barometer.calculatePressureAndTemperature();
 
         temp = barometer.getTemperature();
-        memcpy(temp_data_bytes, &temp, sizeof(temp));
+        memcpy(temp_data_bytes, &temp, sizeof(temp));*/
 
-        if (write(_states_fifo, temp_data_bytes, sizeof(float)) < 0)
+
+
+        if (write(_states_fifo, states, sizeof(state_struct)) < 0)
         {
             printf("Failed to write to states FIFO. Exiting.");
             exit(-1);
-        }		
+        }
+
+
         wait_rest_of_period(&pinfo);
 	}
         return NULL;

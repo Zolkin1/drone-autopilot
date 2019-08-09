@@ -1,4 +1,6 @@
-// NEED TO WRITE MAKEFILE TO COMPILE PROPERLY
+/*
+May want to move all pipe data types to c style arrays. Also maybe protobufs in the future?
+*/
  
 #include <limits.h>
 #include <pthread.h>
