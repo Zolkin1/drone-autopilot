@@ -18,4 +18,4 @@
 #include <array>
 
 void* communication_thread(void *data);
-int open_fifo(char* fifo, int status); // need to put this in thread_helpers
+int open_fifo_status(char* fifo, int status); // need to put this in thread_helpers

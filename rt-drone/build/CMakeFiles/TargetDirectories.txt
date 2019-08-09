@@ -1,9 +1,0 @@
-/home/zach/drone-autopilot/rt-drone/build/CMakeFiles/rebuild_cache.dir
-/home/zach/drone-autopilot/rt-drone/build/CMakeFiles/main.out.dir
-/home/zach/drone-autopilot/rt-drone/build/CMakeFiles/edit_cache.dir
-/home/zach/drone-autopilot/rt-drone/build/device-drivers/CMakeFiles/rebuild_cache.dir
-/home/zach/drone-autopilot/rt-drone/build/device-drivers/CMakeFiles/driver-lib.dir
-/home/zach/drone-autopilot/rt-drone/build/device-drivers/CMakeFiles/edit_cache.dir
-/home/zach/drone-autopilot/rt-drone/build/controls/CMakeFiles/rebuild_cache.dir
-/home/zach/drone-autopilot/rt-drone/build/controls/CMakeFiles/controls-lib.dir
-/home/zach/drone-autopilot/rt-drone/build/controls/CMakeFiles/edit_cache.dir

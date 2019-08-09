@@ -4,7 +4,9 @@ add_library(driver-lib
 	src/Util.cpp
 	src/RCOutput_Navio.cpp
 	src/RCOutput_Navio2.cpp
-	src/PWM.cpp)
+	src/PWM.cpp
+	src/RCInput_Navio.cpp
+	src/RCInput_Navio2.cpp)
 
 target_include_directories(driver-lib PUBLIC
 	inc)

@@ -20,7 +20,7 @@ void *communication_thread(void *data)
 	rcin.initialize();
 	int channel_in[6];
 
-	int _states_commanded_fifo = open_fifo(COMMANDED_FIFO, O_WRONLY);
+	int _states_commanded_fifo = open_fifo_status(COMMANDED_FIFO, O_WRONLY);
 	if (_states_commanded_fifo < 0)
     {
         printf("Failed to open States FIFO. Exiting.");     
@@ -45,7 +45,7 @@ void *communication_thread(void *data)
 	}
 }
 
-int open_fifo(char* fifo, int status)
+int open_fifo_status(char* fifo, int status)
 {
 	int fd = open(fifo, status);
 
