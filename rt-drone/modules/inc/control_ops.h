@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <cerrno>
+#include <cassert>
 
 #include "thread_helpers.h"
 #include "MS5611.h"

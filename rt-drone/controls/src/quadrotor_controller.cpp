@@ -7,15 +7,21 @@ quadRotorController::quadRotorController() : rollPID(1, 0, 0, 0, _dt), pitchPID(
 
 void quadRotorController::control_to_state(struct state_struct current_state, struct state_struct desired_state)
 {
+    debug_file_rpy.open("/home/pi/data/rpy_logs.txt"); //Make it log to a "data" folder. User might not be "pi"   
+    debug_file_motors.open("/home/pi/data/motors_logs.txt");
+
 	roll = rollPID.calculatePID(desired_state.roll - current_state.roll);
 	pitch = pitchPID.calculatePID(desired_state.pitch - current_state.pitch);
 	yaw = yawPID.calculatePID(desired_state.yaw - current_state.yaw);
 	thrust = thrustPID.calculatePID(desired_state.thrust - current_state.thrust);
 
+	debug_file_rpy << "Raw values: " << roll << " " << pitch << " " << yaw << " " << thrust << "\n";
+
 	//Need to convert then into vel space because that is what the motor speed controls. Maybe. Try this first.
 	
 	// Transform to motor space here
 	Eigen::Vector4f motor_inputs = states_to_motors_transform(roll, pitch, yaw, thrust);
+	debug_file_motors << "Motor Values: " << motor_inputs(0) << " " << motor_inputs(1) << " " << motor_inputs(2) << " " << motor_inputs(4) << "\n";
 
 	// Output is duty cycle vector float
 

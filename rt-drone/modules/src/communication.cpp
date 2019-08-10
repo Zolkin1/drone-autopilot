@@ -8,6 +8,7 @@ In the begginnning this will just be a simple RC input node running at the rate 
 */
 
 #include "communication.h"
+using std::ofstream;
 
 void *communication_thread(void *data)
 {
@@ -28,12 +29,17 @@ void *communication_thread(void *data)
         exit(-1);
     }
 
+    ofstream debug_tele_inputs;
+    debug_tele_inputs.open("home/pi/data/rc_inputs.txt");
+
 	while(1)
 	{
 		for (int i = 0; i < 6; i++) //6 channel remote
 		{
 			channel_in[i] = rcin.read(i);
 		}
+
+		debug_tele_inputs << "RC Inputs: " << channel_in[0] << " " << channel_in[1] << " " << channel_in[2] << " " << channel_in[3] << " " << channel_in[4] << " " << channel_in[5] << "\n";
 
 		if (write(_states_commanded_fifo, channel_in, sizeof(channel_in)) < 0)
         {

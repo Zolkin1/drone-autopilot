@@ -5,6 +5,7 @@
 #include <string.h>
 #include <memory>
 #include <cerrno>
+#include <fstream>
 
 #include "thread_helpers.h"
 #include "MS5611.h"

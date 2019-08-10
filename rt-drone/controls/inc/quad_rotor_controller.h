@@ -2,6 +2,8 @@
 
 #include <Eigen/Dense>
 #include <array>
+#include <fstream>
+#include <iostream>
 
 #include "thread_helpers.h"
 #include "pid.h"
@@ -10,6 +12,8 @@
 #include "RCOutput_Navio.h"
 #include "RCOutput_Navio2.h"
 #include "Util.h"
+
+using std::ofstream;
 
 class quadRotorController
 {
@@ -32,6 +36,9 @@ private:
 	static constexpr float _dt = 1/250;
 
 	RCOutput_Navio2 pwm;
+
+	ofstream debug_file_rpy;
+	ofstream debug_file_motors;
 
 	std::array<int, 4> duty_cycles;
 	std::array<float, 4> controller_efforts;

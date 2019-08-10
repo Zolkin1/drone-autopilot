@@ -40,14 +40,15 @@ void *control_ops_thread(void *data)
 
 	printf("Start of while loop control ops.\n");
 
-	while(1)
+	while (1)
 	{
 		char temp_bytes[sizeof(int)];
-		if(read(_mode_fifo, temp_bytes, sizeof(int)) < 0)
+		if (read(_mode_fifo, temp_bytes, sizeof(int)) < 0)
 		{
 			printf("Failed to read fifo.\n");
 			printf("%i\n", errno);
 		}
+
 		memcpy(&control_mode, temp_bytes, sizeof(int));
 
 		switch (control_mode)
@@ -78,6 +79,10 @@ void *control_ops_thread(void *data)
 
 			case EMERGENCY_MODE:
 				break;
+
+			default:
+				printf("Not a possible mode!");
+				assert (false);
 		}
 
 		printf("In control loop\n");

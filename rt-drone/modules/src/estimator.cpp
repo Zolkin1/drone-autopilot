@@ -5,6 +5,8 @@ Should move to a queue system - prob write a wrapper for pipes or something like
 */
 #include "estimator.h"
 
+using std::ofstream;
+
 void *estimator_thread(void *data)
 {
     printf("in estimator");
@@ -24,12 +26,8 @@ void *estimator_thread(void *data)
     AHRS ahrs(move(ptr));
     ahrs.setGyroOffset();
 
-    float roll;
-    float pitch;
-    float yaw;
-    float thrust;
-
-    float ax, ay, az;
+    ofstream debug_file;
+    debug_file.open("/home/pi/data/estimation_logs.txt"); //Make it log to a "data" folder. User might not be "pi"   
 
     //struct state_struct estimated_states;
     float states[4];
@@ -45,11 +43,17 @@ void *estimator_thread(void *data)
     }
 
     printf("start of while loop estimator. \n");
-	while(1)
+	while (1)
 	{
         printf("in while loop\n");
 
         //Use AHRS algo to update pos/orientation with IMU
+        float roll;
+        float pitch;
+        float yaw;
+        float thrust;
+        float ax, ay, az;
+
         ahrs.updateIMU(dt);
         ahrs.getEuler(&roll, &pitch, &yaw);
 
@@ -57,7 +61,7 @@ void *estimator_thread(void *data)
         states[1] = pitch;
         states[2] = yaw;
 
-        //RN get thrust just from IMU
+        //Rn get thrust just from IMU
         ptr->read_accelerometer(&ax, &ay, &az);
         //thrust = az;
         states[3] = az;
@@ -84,6 +88,8 @@ void *estimator_thread(void *data)
         }
 
 
+        // Log data to the debug file
+        debug_file << roll << " " << pitch << " " << yaw << " " << ax << " " << ay << " " << az << "\n"; 
         wait_rest_of_period(&pinfo);
 	}
         return NULL;
