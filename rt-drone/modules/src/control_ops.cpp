@@ -53,6 +53,7 @@ void *control_ops_thread(void *data)
 
 		switch (control_mode)
 		{
+			printf("In control ops loop");
 			case CALIBRATION_MODE:
 				//Calibrate all sensors
 				read_fifo_states(_states_estimated_fifo, states_estimated);

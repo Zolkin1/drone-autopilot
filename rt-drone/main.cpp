@@ -81,7 +81,7 @@ int main(int argc, char* argv[])
     }
 
     //Only run this if you have yet to make the fifo
-    if (mkfifo(ESTIMATED_FIFO, 0666) < 0)
+/*    if (mkfifo(ESTIMATED_FIFO, 0666) < 0)
     {
         printf("Failed to make FIFO. \n");
         printf("%i\n", errno);
@@ -101,7 +101,7 @@ int main(int argc, char* argv[])
         printf("%i\n", errno);
         return -1;
     }
-
+*/
     pthread_t control_ops;
     pthread_t estimator;
     pthread_t communication;
