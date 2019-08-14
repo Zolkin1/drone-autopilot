@@ -7,9 +7,16 @@ Should move to a queue system - prob write a wrapper for pipes or something like
 
 using std::ofstream;
 
+void catcher_function(int sig)
+{
+    printf("Caught signal!\n");
+    exit(-1);
+}
+
 void *estimator_thread(void *data)
 {
-    printf("in estimator");
+    signal(SIGINT, catcher_function);
+    printf("in estimator\n");
     struct  period_info pinfo;
     periodic_task_init(&pinfo, LOOP_PERIOD);
 

@@ -6,6 +6,7 @@
 #include <memory>
 #include <cerrno>
 #include <fstream>
+#include <csignal>
 
 #include "thread_helpers.h"
 #include "MS5611.h"
