@@ -102,8 +102,7 @@ Eigen::Vector4f quadRotorController::states_to_motors_transform(float roll, floa
 	
 	Eigen::Matrix4f invA = A.inverse();
 
-	Eigen::Vector4f control_inputs;
-	control_inputs << thrust, roll, pitch, yaw;
+	Eigen::Vector4f control_inputs(thrust, roll, pitch, yaw);
 
 	//This calculation could be slow. Might want to change it if it causing issues
 	return invA.lu().solve(control_inputs);  
