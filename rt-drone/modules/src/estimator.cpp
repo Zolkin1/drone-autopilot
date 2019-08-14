@@ -6,9 +6,14 @@ Should move to a queue system - prob write a wrapper for pipes or something like
 #include "estimator.h"
 
 using std::ofstream;
+FILE * debug_file;
 
 void catcher_function(int sig)
 {
+    if (debug_file.is_open())
+    {
+        debug_file.close();
+    }
     printf("Caught signal!\n");
     exit(-1);
 }
@@ -33,7 +38,7 @@ void *estimator_thread(void *data)
     AHRS ahrs(move(ptr));
     ahrs.setGyroOffset();
 
-    FILE * debug_file;
+    
     debug_file = fopen("test1.txt", "w");
     //ofstream debug_file;
     //debug_file.open("/home/pi/drone-autopilot/estimation_logs.txt"); //Make it log to a "data" folder. User might not be "pi"   
@@ -101,7 +106,7 @@ void *estimator_thread(void *data)
 
         printf("just about to log to file\n");
         // Log data to the debug file
-        fprintf(debug_file, "test2\n" );
+        fprintf(debug_file, "test3\n" );
         //debug_file << roll << " " << pitch << " " << yaw << " " << ax << " " << ay << " " << az << "\n"; 
         wait_rest_of_period(&pinfo);
 	}
