@@ -8,7 +8,7 @@ Should move to a queue system - prob write a wrapper for pipes or something like
 using std::ofstream;
 FILE * debug_file;
 
-void catcher_function(int sig)
+void catcher_estimator(int sig)
 {
     fclose(debug_file);
     printf("Caught signal!\n");
@@ -17,7 +17,7 @@ void catcher_function(int sig)
 
 void *estimator_thread(void *data)
 {
-    signal(SIGINT, catcher_function);
+    signal(SIGINT, catcher_estimator);
     printf("in estimator\n");
     struct  period_info pinfo;
     periodic_task_init(&pinfo, LOOP_PERIOD);
@@ -103,7 +103,7 @@ void *estimator_thread(void *data)
 
         printf("just about to log to file\n");
         // Log data to the debug file
-        fprintf(debug_file, "test3\n" );
+        fprintf(debug_file, "%f %f %f %f %f %f\n", roll, pitch, yaw, ax, ay, az );
         //debug_file << roll << " " << pitch << " " << yaw << " " << ax << " " << ay << " " << az << "\n"; 
         wait_rest_of_period(&pinfo);
 	}

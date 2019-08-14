@@ -16,9 +16,17 @@ less than 2ms.
 
 #include "control_ops.h"
 
+namespace controls
+{	
+	quadRotorController controller;
+}
+
 void *control_ops_thread(void *data)
 {
+	signal(SIGINT, catcher_controls);
 	printf("in control_ops\n");
+
+	using namespace controls;
 
 	struct 	period_info pinfo;
 	periodic_task_init(&pinfo, LOOP_PERIOD);
@@ -36,7 +44,6 @@ void *control_ops_thread(void *data)
 
 	int control_mode = TELEOPERATED_MODE;
 
-	quadRotorController controller;
 
 	printf("Start of while loop control ops.\n");
 
@@ -118,4 +125,9 @@ int open_fifo(char* fifo, int status)
 	}
 
 	return fd;
+}
+
+void catcher_controls(int sig)
+{
+	controls::controller.close_debug_file();
 }

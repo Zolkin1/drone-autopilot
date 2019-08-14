@@ -21,6 +21,7 @@ public:
 	void control_to_state(struct state_struct current_state, struct state_struct desired_state);
 	void control_to_state_velocity(struct state_struct current_state, struct state_struct desired_state); //Need to add in velocity
 	quadRotorController();
+	void close_debug_file();
 
 private:
 	pid rollPID;
@@ -37,8 +38,8 @@ private:
 
 	RCOutput_Navio2 pwm;
 
-	ofstream debug_file_rpy;
-	ofstream debug_file_motors;
+	FILE * debug_file_rpy;
+	FILE * debug_file_motors;
 
 	std::array<int, 4> duty_cycles;
 	std::array<float, 4> controller_efforts;

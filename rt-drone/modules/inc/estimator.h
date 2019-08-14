@@ -16,3 +16,4 @@
 #include "AHRS.h"
 
 void *estimator_thread(void *data);
+void catcher_estimator(int sig);
