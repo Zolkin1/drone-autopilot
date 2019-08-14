@@ -10,10 +10,7 @@ FILE * debug_file;
 
 void catcher_function(int sig)
 {
-    if (debug_file.is_open())
-    {
-        debug_file.close();
-    }
+    fclose(debug_file);
     printf("Caught signal!\n");
     exit(-1);
 }
