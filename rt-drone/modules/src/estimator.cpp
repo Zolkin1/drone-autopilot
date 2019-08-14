@@ -26,8 +26,10 @@ void *estimator_thread(void *data)
     AHRS ahrs(move(ptr));
     ahrs.setGyroOffset();
 
-    ofstream debug_file;
-    debug_file.open("/home/pi/drone-autopilot/estimation_logs.txt"); //Make it log to a "data" folder. User might not be "pi"   
+    FILE * debug_file;
+    debug_file = fopen("test1.txt", "w");
+    //ofstream debug_file;
+    //debug_file.open("/home/pi/drone-autopilot/estimation_logs.txt"); //Make it log to a "data" folder. User might not be "pi"   
 
     //struct state_struct estimated_states;
     float states[4];
@@ -46,7 +48,7 @@ void *estimator_thread(void *data)
 	while (1)
 	{
         printf("in while loop\n");
-	printf("making vars\n");
+        printf("making vars\n");
         //Use AHRS algo to update pos/orientation with IMU
         float roll;
         float pitch;
@@ -54,18 +56,18 @@ void *estimator_thread(void *data)
         float thrust;
         float ax, ay, az;
 
-	printf("reading imu AHRS\n");
-	ahrs.updateIMU(dt);
-	ahrs.getEuler(&roll, &pitch, &yaw);
+        printf("reading imu AHRS\n");
+        ahrs.updateIMU(dt);
+        ahrs.getEuler(&roll, &pitch, &yaw);
 
         states[0] = roll;
         states[1] = pitch;
         states[2] = yaw;
 
-	printf("reading the accelerometer\n");
+        printf("reading the accelerometer\n");
         //Rn get thrust just from IMU
         auto imu2 = std::unique_ptr <InertialSensor>{new MPU9250()};
-	imu2->read_accelerometer(&ax, &ay, &az);
+        imu2->read_accelerometer(&ax, &ay, &az);
         //thrust = az;
         states[3] = az;
 
@@ -83,16 +85,17 @@ void *estimator_thread(void *data)
         memcpy(temp_data_bytes, &temp, sizeof(temp));*/
 
 	
-	printf("just about to write to FIFO\n");
+        printf("just about to write to FIFO\n");
         if (write(_states_fifo, states, sizeof(state_struct)) < 0)
         {
             printf("Failed to write to states FIFO. Exiting.\n");
             exit(-1);
         }
 
-	printf("just about to log to file\n");
+        printf("just about to log to file\n");
         // Log data to the debug file
-        debug_file << roll << " " << pitch << " " << yaw << " " << ax << " " << ay << " " << az << "\n"; 
+        fprintf(debug_file, "test2\n" );
+        //debug_file << roll << " " << pitch << " " << yaw << " " << ax << " " << ay << " " << az << "\n"; 
         wait_rest_of_period(&pinfo);
 	}
         return NULL;
