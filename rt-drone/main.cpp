@@ -13,6 +13,7 @@ May want to move all pipe data types to c style arrays. Also maybe protobufs in 
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <cerrno>
+#include <csignal>
 
 #include "thread_helpers.h"
 #include "MS5611.h"
@@ -21,6 +22,12 @@ May want to move all pipe data types to c style arrays. Also maybe protobufs in 
 #include "constants.h"
 #include "communication.h"
  
+void catcher_function(int sig)
+{
+    printf("Caught signal!\n");
+    exit(-1);
+}
+
 pthread_attr_t initRTThread(int sched_policy, int sched_prior)
 {
     struct sched_param param;
