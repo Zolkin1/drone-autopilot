@@ -83,7 +83,7 @@ out:
 
 int main(int argc, char* argv[])
 {
-    //signal(SIGINT, catcher_function);
+    signal(SIGINT, catcher_function);
  	printf("in main \n");
 
     /* Lock memory */
