@@ -38,7 +38,7 @@ void *control_ops_thread(void *data)
 
 	int _states_estimated_fifo = open_fifo(ESTIMATED_FIFO, O_RDONLY);
 	int _states_commanded_fifo = open_fifo(COMMANDED_FIFO, O_RDONLY);
-	int _mode_fifo = open_fifo(MODE_FIFO, O_RDONLY);
+	//int _mode_fifo = open_fifo(MODE_FIFO, O_RDONLY);
 
 	int control_mode = TELEOPERATED_MODE;
 
