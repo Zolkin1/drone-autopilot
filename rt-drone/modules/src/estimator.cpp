@@ -6,22 +6,20 @@ Should move to a queue system - prob write a wrapper for pipes or something like
 #include "estimator.h"
 
 using std::ofstream;
-FILE * debug_file;
 
-void catcher_estimator(int sig)
+/*void catcher_estimator(int sig)
 {
     fclose(debug_file);
-    printf("Caught signal!\n");
+    printf("Caught signal - estimator!\n");
     exit(-1);
-}
+}*/
 
 void *estimator_thread(void *data)
 {
-    signal(SIGINT, catcher_estimator);
+    //signal(SIGINT, catcher_estimator);
     printf("in estimator\n");
     struct  period_info pinfo;
     periodic_task_init(&pinfo, LOOP_PERIOD);
-
 
     MS5611 barometer;
     barometer.initialize();
@@ -36,7 +34,7 @@ void *estimator_thread(void *data)
     ahrs.setGyroOffset();
 
     
-    debug_file = fopen("test1.txt", "w");
+    //estimator_debug = fopen("test1.txt", "w");
     //ofstream debug_file;
     //debug_file.open("/home/pi/drone-autopilot/estimation_logs.txt"); //Make it log to a "data" folder. User might not be "pi"   
 
@@ -103,7 +101,7 @@ void *estimator_thread(void *data)
 
         printf("just about to log to file\n");
         // Log data to the debug file
-        fprintf(debug_file, "%f %f %f %f %f %f\n", roll, pitch, yaw, ax, ay, az );
+        fprintf(estimator_debug, "%f %f %f %f %f %f\n", roll, pitch, yaw, ax, ay, az );
         //debug_file << roll << " " << pitch << " " << yaw << " " << ax << " " << ay << " " << az << "\n"; 
         wait_rest_of_period(&pinfo);
 	}

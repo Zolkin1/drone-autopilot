@@ -2,8 +2,8 @@
 
 quadRotorController::quadRotorController() : rollPID(1, 0, 0, 0, _dt), pitchPID(1, 0, 0, 0, _dt), yawPID(1, 0, 0, 0, _dt), thrustPID(1, 0, 0, 0, _dt), pwm()
 {
-	debug_file_rpy = fopen("rpy_logs.txt", "w"); //Make it log to a "data" folder. User might not be "pi"   
-	debug_file_motors = fopen("motors_logs.txt", "w");
+	//rpy_debug = fopen("rpy_logs.txt", "w"); //Make it log to a "data" folder. User might not be "pi"   
+	//motor_debug = fopen("motors_logs.txt", "w");
 }
 
 void quadRotorController::control_to_state(struct state_struct current_state, struct state_struct desired_state)
@@ -15,13 +15,13 @@ void quadRotorController::control_to_state(struct state_struct current_state, st
 	yaw = yawPID.calculatePID(desired_state.yaw - current_state.yaw);
 	thrust = thrustPID.calculatePID(desired_state.thrust - current_state.thrust);
 
-	fprintf(debug_file_rpy, "%f %f %f %f \n", roll, pitch, yaw, thrust);
+	fprintf(rpy_debug, "%f %f %f %f \n", roll, pitch, yaw, thrust);
 
 	//Need to convert then into vel space because that is what the motor speed controls. Maybe. Try this first.
 	
 	// Transform to motor space here
 	Eigen::Vector4f motor_inputs = states_to_motors_transform(roll, pitch, yaw, thrust);
-	fprintf(debug_file_motors, "%f %f %f %f\n", motor_inputs(0), motor_inputs(1), motor_inputs(2), motor_inputs(4));
+	fprintf(motor_debug, "%f %f %f %f\n", motor_inputs(0), motor_inputs(1), motor_inputs(2), motor_inputs(4));
 
 	// Output is duty cycle vector float
 
@@ -119,6 +119,7 @@ int quadRotorController::write_motor(int motor, int duty_cycle)
 
 void quadRotorController::close_debug_file()
 {
+	printf("Closing quadrotor controls files\n");
 	fclose(debug_file_motors);
 	fclose(debug_file_rpy);
 }

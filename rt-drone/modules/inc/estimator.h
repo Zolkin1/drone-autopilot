@@ -1,3 +1,4 @@
+#pragma once
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <fcntl.h>
@@ -16,4 +17,3 @@
 #include "AHRS.h"
 
 void *estimator_thread(void *data);
-void catcher_estimator(int sig);

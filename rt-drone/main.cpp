@@ -22,13 +22,18 @@ May want to move all pipe data types to c style arrays. Also maybe protobufs in 
 #include "constants.h"
 #include "communication.h"
 
-/* 
+
 void catcher_function(int sig)
 {
     printf("Caught signal!\n");
+    fclose(estimator_debug);
+    fclose(motor_debug);
+    fclose(rpy_debug);
+    //controls::controller.close_debug_file();
+    //estimator::catcher_estimator(sig);
     exit(-1);
 }
-*/
+
 pthread_attr_t initRTThread(int sched_policy, int sched_prior)
 {
     struct sched_param param;

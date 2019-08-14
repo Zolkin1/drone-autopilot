@@ -22,4 +22,4 @@ static const int EMERGENCY_MODE = 3;
 int read_fifo_states(int fifo, struct state_struct &states);
 int open_fifo(char* fifo, int status);
 void *control_ops_thread(void *data);
-void catcher_controls(int sig);
+//void catcher_controls(int sig);
