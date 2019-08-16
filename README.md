@@ -1,8 +1,10 @@
 # drone-autopilot
-This repo provides a custom autopilot designed to be run on the Navio2 and Raspberry Pi 3 hardware. This is built with the ROS architecture. On the drone there are two 9 axis IMU sensors, a GPS, a barometer, 4 ESCs, and 2 servos right now. The hardware is subject to change. See below for a wiring diagram.
+This repo provides a custom autopilot designed to be run on the Navio2 and Raspberry Pi 3 hardware.
 
-Long term:
-A custom pcb should be designed with an embedded processor running an RTOS. That embedded processor should talk directly to the sensors and run the control and filter algorithms on it. For rapid prototyping we are not doing this.
+The software on this drone is split into two different parts: the realtime process and the ROS process. The real time computer is running a version of RT Linux on the pi connected to the Navio2. The ROS system is running on a seperate computer connected to the navio over ethernet. The RT system handles all the hardware interactions, control systems and estimation. The ROS system handles path planning, computer vision and high level "inteligence."
+
+Notes:
+This repo should probably be broken into one repo for the real time stuff and another repo for the ROS side.
 
 # Cloning and Building the Repo
 1. Download ROS
@@ -14,6 +16,10 @@ A custom pcb should be designed with an embedded processor running an RTOS. That
 5. Before starting development, please create a new branch with the convention ```<first intial><last inital>-<branch name>```
 
 # Motor Calibration
+First version is a c++ program that needs to be run on the Navio2 pi.
+Cmake and make the rt folder. Plug in the motor to PWM port 0. Run calibration.out as root. The ESC should emit a 1-2-3 beep then it should emit another beep and that indicates it is done. If that doesn't work then enter "0" into the terminal. If there are issues, follow [this](https://forum.arduino.cc/index.php?topic=270309.0) link.
+
+Second version uses the ROS implementation (deprecated)
 You will need to use ``` tmux ``` to create mulitple windows to run each rosnode. In each tmux window, you will need to run ```source /drone-autopilot/drone-autpilot/GC_Drone/devel/setup.bash``` to source this ROS workspace.
 On one window run:
 ```
@@ -27,7 +33,7 @@ On another window run:
 ```
 rostopic pub /changeOut std_msgs/String "high"
 ```
-Then plug in the ESC (should emit a 1-2-3 beep) then it should emit another beep and that indicates it is done. But you may need to publish a "low" message first to show it where the low signal is.If there are issues, follow [this](https://forum.arduino.cc/index.php?topic=270309.0) link. After that, the esc should be ready to fly!
+Then plug in the ESC (should emit a 1-2-3 beep) then it should emit another beep and that indicates it is done. But you may need to publish a "low" message first to show it where the low signal is. If there are issues, follow [this](https://forum.arduino.cc/index.php?topic=270309.0) link. After that, the esc should be ready to fly!
 
 # Style and File Naming
 We will be following the ROS C++ style guie found [here](http://wiki.ros.org/CppStyleGuide).
@@ -36,20 +42,19 @@ When creating a new branch, please use the convention: initials-description_of_b
 
 # System Wiring Diagram
 
+# RT System Architecture
+Each "module" is run as an individual thread. To pass information between threads we are using FIFOs (pipes). The pipes are just byte streams and everything is currently done through ``memcpy`` although that should change to some type of message type (with starts and ends - need to write this api). The main threads are:
+* Controls - takes the current states and the desired states and runs the controls algorithms and talks to the ESCs.
+* Estimation - Reads values from sensors and outputs the values as a state estimate. Also does all the sensor fusion.
+* Communication - responsible for reading information from the RPI ethernet cable and reading the RC input. Should only publish the appropriate message depending on state status (teleop vs autonomous).
+
+Right now everything runs at the same rate because the FIFOs are exactly that: first in, first out. So if the estimation thread runs 10x faster than the controls thread then the controls thread will lag behind. Inter thread communication should be re-written to support different thread rates.
+
 # ROS Publish and Subscribe Messages
-Right now, the nodes we have are:
-* main_controller
-* imu
-* barometer
-* estimator
-
-A GPS node will be added. The sensors will publish on their respective topics. The estimator will recieve these messages at different rates then use a multirate kalman filter to fuse the data and filter out noise. The estimator will publish an estimate of the state to the controller.
-
-An nput node (either teleoperated or autonomous input) will publish a desired state. The controller will then take that along with the estimated state and attempt to output proper duty cycles to the motors.
-
+Todo: this section
 
 # Controls
-Right now we are attempting to do full state feedback on the quadrotor drone. This involves taking inputs from the sensors and piping that through a kalman filter. The Kalaman Filter will give an optimal estimate of the states of the drone. There are 12 states (a derivation will be linked in a paper that has yet to be added to github, talk to @Zolkin1 for details right now). After we have an estimate of the 12 states then we are applying LQR (Linear Quadratic Regulator) control. This is a form of optimal control using modern control methods.
+We are running a PID controller on each axis (thrust, roll, pitch, yaw). This is then transformed into the motor input space and applied to the motors.
 
 # Project Management
 Current to-do's and issues are being tracked in GitHub through issues and/or the project tab.
