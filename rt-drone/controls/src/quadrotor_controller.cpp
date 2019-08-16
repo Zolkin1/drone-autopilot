@@ -53,7 +53,7 @@ void quadRotorController::control_to_state_velocity(struct state_struct current_
 	//Need to convert then into vel space because that is what the motor speed controls. Maybe. Try this first.
 	
 	// Transform to motor space here
-	Eigen::Vector4f motor_inputs = states_to_motors_transform(roll, pitch, yaw, thrust);
+	Eigen::Vector4f motor_inputs = states_to_motors_transform(roll, pitch, yaw, thrust); //Might not be the correct type
 
 	// Output is duty cycle vector float
 
@@ -105,7 +105,8 @@ Eigen::Vector4f quadRotorController::states_to_motors_transform(float roll, floa
 	Eigen::Vector4f control_inputs(thrust, roll, pitch, yaw);
 
 	//This calculation could be slow. Might want to change it if it causing issues
-	return invA.lu().solve(control_inputs);  
+	Eigen::Vector4f sol = invA.lu().solve(control_inputs);
+	return sol;
 }
 
 int quadRotorController::write_motor(int motor, int duty_cycle)

@@ -16,7 +16,7 @@ using std::ofstream;
 
 void *estimator_thread(void *data)
 {
-    //signal(SIGINT, catcher_estimator);
+    //signal(SIGINT, catcher_estimator);    
     printf("in estimator\n");
     struct  period_info pinfo;
     periodic_task_init(&pinfo, LOOP_PERIOD);

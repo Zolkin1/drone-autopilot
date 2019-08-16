@@ -12,6 +12,10 @@ add_executable(main.out
 	util/src/thread_helpers.cpp
 	modules/src/communication.cpp)
 
+add_executable(calibration.out
+	motor_calibration.cpp)
+
+
 target_include_directories(main.out PUBLIC
 	modules/inc
 	util/inc)
@@ -21,3 +25,9 @@ target_link_libraries(main.out
 	pthread
 	controls-lib
 	estimation-lib)
+
+target_include_directories(calibration.out PUBLIC
+	util/inc)
+
+target_link_libraries(calibration.out
+	driver-lib)
