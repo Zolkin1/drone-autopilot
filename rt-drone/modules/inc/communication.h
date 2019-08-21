@@ -8,6 +8,7 @@
 #include <cerrno>
 #include <unistd.h>
 #include <fstream>
+#include <iostream>
 
 #include "RCInput_Navio2.h"
 #include "RCInput_Navio.h"

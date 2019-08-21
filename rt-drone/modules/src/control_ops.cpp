@@ -33,8 +33,11 @@ void *control_ops_thread(void *data)
     char temp_data_bytes[sizeof(float)];
     float temp;
 
-    struct state_struct states_estimated;
-    struct state_struct states_commanded;
+    uint8_t states_estimated [4];
+    uint8_t states_commanded [4];
+
+    //struct state_struct states_estimated;
+    //struct state_struct states_commanded;
 
 	int _states_estimated_fifo = open_fifo(ESTIMATED_FIFO, O_RDONLY);
 	int _states_commanded_fifo = open_fifo(COMMANDED_FIFO, O_RDONLY);
@@ -79,7 +82,7 @@ void *control_ops_thread(void *data)
 				read_fifo_states(_states_estimated_fifo, states_estimated);
 				read_fifo_states(_states_commanded_fifo, states_commanded);
 
-				controller.control_to_state_velocity(states_estimated, states_commanded);
+				//controller.control_to_state_velocity(states_estimated, states_commanded);
 
 				break;
 
@@ -98,17 +101,17 @@ void *control_ops_thread(void *data)
 }
 
 //Can probably implement this as a template
-int read_fifo_states(int fifo, struct state_struct &states)
+int read_fifo_states(int fifo, uint8_t * out)
 {
-	char temp_bytes[sizeof(struct state_struct)];
+	char temp_bytes[sizeof(out)/sizeof(uint8_t)];
 
-	if(read(fifo, temp_bytes, sizeof(struct state_struct)) < 0)
+	if(read(fifo, temp_bytes, sizeof(out)/sizeof(uint8_t)) < 0)
 	{
 		printf("Failed to read fifo.\n");
 		printf("%i\n", errno);
 		return errno;
 	}
-	memcpy(&states, temp_bytes, sizeof(struct state_struct));
+	memcpy(out, temp_bytes, sizeof(temp_bytes));
 }
 
 int open_fifo(char* fifo, int status)

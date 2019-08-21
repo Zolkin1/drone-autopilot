@@ -6,14 +6,14 @@ quadRotorController::quadRotorController() : rollPID(1, 0, 0, 0, _dt), pitchPID(
 	//motor_debug = fopen("motors_logs.txt", "w");
 }
 
-void quadRotorController::control_to_state(struct state_struct current_state, struct state_struct desired_state)
+void quadRotorController::control_to_state(uint8_t * current_state, uint8_t * desired_state)
 {
    
 
-	roll = rollPID.calculatePID(desired_state.roll - current_state.roll);
-	pitch = pitchPID.calculatePID(desired_state.pitch - current_state.pitch);
-	yaw = yawPID.calculatePID(desired_state.yaw - current_state.yaw);
-	thrust = thrustPID.calculatePID(desired_state.thrust - current_state.thrust);
+	roll = rollPID.calculatePID(desired_state[0] - current_state[0]);
+	pitch = pitchPID.calculatePID(desired_state[1] - current_state[1]);
+	yaw = yawPID.calculatePID(desired_state[2] - current_state[2]);
+	thrust = thrustPID.calculatePID(desired_state[3] - current_state[3]);
 
 	printf("controls logging to rpy file. \n");
 	fprintf(rpy_debug, "%f %f %f %f \n", (float)roll, (float)pitch, (float)yaw, (float)thrust);
@@ -21,9 +21,8 @@ void quadRotorController::control_to_state(struct state_struct current_state, st
 	//Need to convert then into vel space because that is what the motor speed controls. Maybe. Try this first.
 	
 	// Transform to motor space here
-	Eigen::Vector4f motor_inputs = states_to_motors_transform(1, 1, 1, 1);
+	Eigen::Vector4f motor_inputs = states_to_motors_transform(roll, pitch, yaw, thrust);
 	printf("controls logging to motor debug. \n");
-	std::cout << motor_inputs(0) << std::endl;
 	fprintf(motor_debug, "%f %f %f %f\n", (float)motor_inputs(0), (float)motor_inputs(1), (float)motor_inputs(2), (float)motor_inputs(3));
 
 	// Output is duty cycle vector float
@@ -44,7 +43,7 @@ void quadRotorController::control_to_state(struct state_struct current_state, st
 	}
 }
 
-void quadRotorController::control_to_state_velocity(struct state_struct current_state, struct state_struct desired_state) //Need to add in velocity
+/*void quadRotorController::control_to_state_velocity(struct state_struct current_state, struct state_struct desired_state) //Need to add in velocity
 {
 	roll = rollPID.calculatePID(desired_state.roll - current_state.roll);
 	pitch = pitchPID.calculatePID(desired_state.pitch - current_state.pitch);
@@ -54,7 +53,7 @@ void quadRotorController::control_to_state_velocity(struct state_struct current_
 	//Need to convert then into vel space because that is what the motor speed controls. Maybe. Try this first.
 	
 	// Transform to motor space here
-	Eigen::Vector4f motor_inputs = states_to_motors_transform(1, 1, 1, 1); //Might not be the correct type
+	Eigen::Vector4f motor_inputs = states_to_motors_transform(roll, pitch, yaw, thrust); //Might not be the correct type
 
 	// Output is duty cycle vector float
 
@@ -73,7 +72,7 @@ void quadRotorController::control_to_state_velocity(struct state_struct current_
 		write_motor(i, duty_cycle);
 	}
 }
-
+*/
 Eigen::Vector4f quadRotorController::states_to_motors_transform(float roll, float pitch, float yaw, float thrust)
 {
 	/*

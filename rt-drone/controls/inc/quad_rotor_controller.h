@@ -18,8 +18,8 @@ using std::ofstream;
 class quadRotorController
 {
 public:
-	void control_to_state(struct state_struct current_state, struct state_struct desired_state);
-	void control_to_state_velocity(struct state_struct current_state, struct state_struct desired_state); //Need to add in velocity
+	void control_to_state(uint8_t * current_state, uint8_t * desired_state);//struct state_struct current_state, struct state_struct desired_state);
+	//void control_to_state_velocity(struct state_struct current_state, struct state_struct desired_state); //Need to add in velocity
 	quadRotorController();
 	void close_debug_file();
 
