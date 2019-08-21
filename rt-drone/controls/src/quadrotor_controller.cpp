@@ -21,8 +21,9 @@ void quadRotorController::control_to_state(struct state_struct current_state, st
 	//Need to convert then into vel space because that is what the motor speed controls. Maybe. Try this first.
 	
 	// Transform to motor space here
-	Eigen::Vector4f motor_inputs = states_to_motors_transform(roll, pitch, yaw, thrust);
+	Eigen::Vector4f motor_inputs = states_to_motors_transform(1, 1, 1, 1);
 	printf("controls logging to motor debug. \n");
+	std::cout << motor_inputs(0) << std::endl;
 	fprintf(motor_debug, "%f %f %f %f\n", (float)motor_inputs(0), (float)motor_inputs(1), (float)motor_inputs(2), (float)motor_inputs(3));
 
 	// Output is duty cycle vector float
@@ -53,7 +54,7 @@ void quadRotorController::control_to_state_velocity(struct state_struct current_
 	//Need to convert then into vel space because that is what the motor speed controls. Maybe. Try this first.
 	
 	// Transform to motor space here
-	Eigen::Vector4f motor_inputs = states_to_motors_transform(roll, pitch, yaw, thrust); //Might not be the correct type
+	Eigen::Vector4f motor_inputs = states_to_motors_transform(1, 1, 1, 1); //Might not be the correct type
 
 	// Output is duty cycle vector float
 
