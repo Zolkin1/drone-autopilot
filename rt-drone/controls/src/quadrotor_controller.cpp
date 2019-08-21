@@ -23,7 +23,7 @@ void quadRotorController::control_to_state(struct state_struct current_state, st
 	// Transform to motor space here
 	Eigen::Vector4f motor_inputs = states_to_motors_transform(roll, pitch, yaw, thrust);
 	printf("controls logging to motor debug. \n");
-	fprintf(motor_debug, "%f %f %f %f\n", motor_inputs(0), motor_inputs(1), motor_inputs(2), motor_inputs(4));
+	fprintf(motor_debug, "%f %f %f %f\n", motor_inputs(0), motor_inputs(1), motor_inputs(2), motor_inputs(3));
 
 	// Output is duty cycle vector float
 
