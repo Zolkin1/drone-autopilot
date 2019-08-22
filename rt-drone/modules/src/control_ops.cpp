@@ -16,6 +16,8 @@ less than 2ms.
 
 #include "control_ops.h"
 
+int read_fifo_float(int fifo, float * out);
+
 void *control_ops_thread(void *data)
 {
 	//signal(SIGINT, catcher_controls);
@@ -33,8 +35,8 @@ void *control_ops_thread(void *data)
     char temp_data_bytes[sizeof(float)];
     float temp;
 
-    uint8_t states_estimated [4];
-    uint8_t states_commanded [4];
+    float states_estimated [4];
+    uint8_t states_commanded [6];
 
     //struct state_struct states_estimated;
     //struct state_struct states_commanded;
@@ -50,7 +52,7 @@ void *control_ops_thread(void *data)
 
 	while (1)
 	{
-		char temp_bytes[sizeof(int)];
+		char temp_bytes[sizeof(uint8_t)];
 		/*if (read(_mode_fifo, temp_bytes, sizeof(int)) < 0)
 		{
 			printf("Failed to read fifo.\n");
@@ -71,8 +73,10 @@ void *control_ops_thread(void *data)
 				break;
 
 			case TELEOPERATED_MODE:
+				printf("Reading from estimated");
 				read_fifo_states(_states_estimated_fifo, states_estimated);
-				read_fifo_states(_states_commanded_fifo, states_commanded);
+				printf("Reading from commanded states");
+				read_fifo_states_float(_states_commanded_fifo, states_commanded);
 
 				controller.control_to_state(states_estimated, states_commanded);
 
@@ -98,6 +102,18 @@ void *control_ops_thread(void *data)
 		
 		wait_rest_of_period(&pinfo);
 	}
+}
+
+int read_fifo_states_float(int fifo, float * out)
+{
+    char temp_bytes(sizeof(out)/sizeof(float));
+    if(read(fifo, temp_bytes, sizeof(out)/sizeof(float)) < 0)
+    {
+	    printf("Failed to read fifo");
+	    printf("%i\n", errno);
+	    return errno;
+    }
+    memcpy(out, temp_bytes, sizeof(temp_bytes));
 }
 
 //Can probably implement this as a template
