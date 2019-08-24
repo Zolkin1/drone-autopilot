@@ -21,7 +21,7 @@ int read_fifo_float(int fifo, float * out);
 void *control_ops_thread(void *data)
 {
 	//signal(SIGINT, catcher_controls);
-	printf("in control_ops\n");
+	printf("[CONTROL THREAD]: in control_ops\n");
 
 	//using namespace controls;
 
@@ -30,7 +30,7 @@ void *control_ops_thread(void *data)
 
 	struct 	period_info pinfo;
 	periodic_task_init(&pinfo, LOOP_PERIOD);
-	printf("Initialized the periodic thread\n");
+	printf("[CONTROL THREAD]: Initialized the periodic thread\n");
 
     char temp_data_bytes[sizeof(float)];
     float temp;
@@ -48,7 +48,7 @@ void *control_ops_thread(void *data)
 	int control_mode = TELEOPERATED_MODE;
 
 
-	printf("Start of while loop control ops.\n");
+	printf("[CONTROL THREAD]: Start of while loop control ops.\n");
 
 	while (1)
 	{
@@ -63,7 +63,6 @@ void *control_ops_thread(void *data)
 
 		switch (control_mode)
 		{
-			printf("In control ops loop");
 			case CALIBRATION_MODE:
 				//Calibrate all sensors
 				read_fifo_states_float(_states_estimated_fifo, states_estimated);
@@ -73,9 +72,9 @@ void *control_ops_thread(void *data)
 				break;
 
 			case TELEOPERATED_MODE:
-				printf("Reading from estimated");
+				printf("[CONTROL THREAD]: Reading from estimated\n");
 				read_fifo_states_float(_states_estimated_fifo, states_estimated);
-				printf("Reading from commanded states");
+				printf("[CONTROL THREAD]: Reading from commanded states\n");
 				read_fifo_states_float(_states_commanded_fifo, states_commanded);
 
 				controller.control_to_state(states_estimated, states_commanded);
@@ -95,11 +94,11 @@ void *control_ops_thread(void *data)
 				break;
 
 			default:
-				printf("Not a possible mode!");
+				printf("[CONTROL THREAD]: Not a possible mode!\n");
 				assert (false);
 		}
 
-		printf("In control loop\n");
+		printf("[CONTROL THREAD]: In control loop\n");
 		
 		wait_rest_of_period(&pinfo);
 	}
@@ -110,7 +109,7 @@ int read_fifo_states_float(int fifo, float * out)
     char temp_bytes[(sizeof(out)/sizeof(float))];
     if(read(fifo, temp_bytes, sizeof(out)/sizeof(float)) < 0)
     {
-	    printf("Failed to read fifo");
+	    printf("[CONTROL THREAD]: Failed to read fifo\n");
 	    printf("%i\n", errno);
 	    return errno;
     }
@@ -124,7 +123,7 @@ int read_fifo_states(int fifo, uint8_t * out)
 
 	if(read(fifo, temp_bytes, sizeof(out)/sizeof(uint8_t)) < 0)
 	{
-		printf("Failed to read fifo.\n");
+		printf("[CONTROL THREAD]: Failed to read fifo.\n");
 		printf("%i\n", errno);
 		return errno;
 	}
@@ -137,7 +136,7 @@ int open_fifo(char* fifo, int status)
 
 	if (fd < 0)
 	{
-		printf("Failed to open States FIFO. Exiting.\n");
+		printf("[CONTROL THREAD]: Failed to open States FIFO. Exiting.\n");
 		printf("%i\n", errno);
 		return(errno);
 	}

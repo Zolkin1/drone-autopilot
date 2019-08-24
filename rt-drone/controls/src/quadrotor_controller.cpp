@@ -15,14 +15,14 @@ void quadRotorController::control_to_state(float * current_state, float * desire
 	yaw = yawPID.calculatePID(desired_state[2] - current_state[2]);
 	thrust = thrustPID.calculatePID(desired_state[3] - current_state[3]);
 
-	printf("controls logging to rpy file. \n");
+	printf("[CONTROL THREAD]: controls logging to rpy file. \n");
 	fprintf(rpy_debug, "%f %f %f %f \n", (float)roll, (float)pitch, (float)yaw, (float)thrust);
 
 	//Need to convert then into vel space because that is what the motor speed controls. Maybe. Try this first.
 	
 	// Transform to motor space here
 	Eigen::Vector4f motor_inputs = states_to_motors_transform(roll, pitch, yaw, thrust);
-	printf("controls logging to motor debug. \n");
+	printf("[CONTROL THREAD]: controls logging to motor debug. \n");
 	fprintf(motor_debug, "%f %f %f %f\n", (float)motor_inputs(0), (float)motor_inputs(1), (float)motor_inputs(2), (float)motor_inputs(3));
 
 	// Output is duty cycle vector float

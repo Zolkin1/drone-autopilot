@@ -12,7 +12,7 @@ using std::ofstream;
 
 void *communication_thread(void *data)
 {
-	printf("in communication");
+	printf("[COMMS THREAD]: in communication \n");
     struct  period_info pinfo;
     periodic_task_init(&pinfo, LOOP_PERIOD);
 
@@ -25,7 +25,7 @@ void *communication_thread(void *data)
 	int _states_commanded_fifo = open_fifo_status(COMMANDED_FIFO, O_WRONLY);
 	if (_states_commanded_fifo < 0)
     {
-        printf("Failed to open States FIFO. Exiting.");     
+        printf("[COMMS THREAD]: Failed to open States FIFO. Exiting.\n");     
         printf("%i\n", errno);
         exit(-1);
     }
@@ -37,7 +37,7 @@ void *communication_thread(void *data)
 	{
 		for (int i = 0; i < 4; i++) //6 channel remote, but only reading 4
 		{
-			printf("Reading value from rcin");
+			printf("[COMMS THREAD]: Reading value from rcin\n");
 			//channel_in[i] = rcin.read(i);
 			channel_in[i] = 1;
 		}
@@ -47,7 +47,7 @@ void *communication_thread(void *data)
 
 		if (write(_states_commanded_fifo, channel_in, sizeof(channel_in)/sizeof(channel_in[0])) < 0)
         {
-            printf("Failed to write to states FIFO. Exiting.");
+            printf("[COMMS THREAD]: Failed to write to states FIFO. Exiting.\n");
             exit(-1);
         }
 
@@ -61,7 +61,7 @@ int open_fifo_status(char* fifo, int status)
 
 	if (fd < 0)
 	{
-		printf("Failed to open States FIFO. Exiting.\n");
+		printf("[COMMS THREAD]: Failed to open States FIFO. Exiting.\n");
 		printf("%i\n", errno);
 		return(errno);
 	}

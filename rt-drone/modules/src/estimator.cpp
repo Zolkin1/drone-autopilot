@@ -17,13 +17,13 @@ using std::ofstream;
 void *estimator_thread(void *data)
 {
     //signal(SIGINT, catcher_estimator);    
-    printf("in estimator\n");
+    printf("[ESTIMATOR THREAD]: in estimator\n");
     struct  period_info pinfo;
     periodic_task_init(&pinfo, LOOP_PERIOD);
 
     MS5611 barometer;
     barometer.initialize();
-    printf("Baro initialzed\n");
+    printf("[ESTIMATOR THREAD]: Baro initialzed\n");
 
     char temp_data_bytes[sizeof(float)];
     char pressure_data_bytes[sizeof(float)];	
@@ -46,16 +46,16 @@ void *estimator_thread(void *data)
     int _states_fifo = open(ESTIMATED_FIFO, O_WRONLY);
     if (_states_fifo < 0)
     {
-        printf("Failed to open States FIFO. Exiting.");     
+        printf("[ESTIMATOR THREAD]: Failed to open States FIFO. Exiting.\n");     
         printf("%i\n", errno);
         exit(-1);
     }
 
-    printf("start of while loop estimator. \n");
+    printf("[ESTIMATOR THREAD]: start of while loop estimator. \n");
 	while (1)
 	{
-        printf("in while loop\n");
-        printf("making vars\n");
+        printf("[ESTIMATOR THREAD]: in while loop\n");
+        printf("[ESTIMATOR THREAD]: making vars\n");
         //Use AHRS algo to update pos/orientation with IMU
         float roll;
         float pitch;
@@ -63,7 +63,7 @@ void *estimator_thread(void *data)
         float thrust;
         float ax, ay, az;
 
-        printf("reading imu AHRS\n");
+        printf("[ESTIMATOR THREAD]: reading imu AHRS\n");
         ahrs.updateIMU(dt);
         ahrs.getEuler(&roll, &pitch, &yaw);
 
@@ -71,7 +71,7 @@ void *estimator_thread(void *data)
         states[1] = pitch;
         states[2] = yaw;
 
-        printf("reading the accelerometer\n");
+        printf("[ESTIMATOR THREAD]: reading the accelerometer\n");
         //Rn get thrust just from IMU
         auto imu2 = std::unique_ptr <InertialSensor>{new MPU9250()};
         imu2->read_accelerometer(&ax, &ay, &az);
@@ -92,14 +92,14 @@ void *estimator_thread(void *data)
         memcpy(temp_data_bytes, &temp, sizeof(temp));*/
 
 	
-        printf("just about to write to FIFO\n");
-        if (write(_states_fifo, states, sizeof(state_struct)) < 0)
+        printf("[ESTIMATOR THREAD]: just about to write to FIFO\n");
+        if (write(_states_fifo, states, sizeof(states)/sizeof(states[0])) < 0)
         {
-            printf("Failed to write to states FIFO. Exiting.\n");
+            printf("[ESTIMATOR THREAD]: Failed to write to states FIFO. Exiting.\n");
             exit(-1);
         }
 
-        printf("just about to log to file\n");
+        printf("[ESTIMATOR THREAD]: just about to log to file\n");
         // Log data to the debug file
         fprintf(estimator_debug, "%f %f %f %f %f %f\n", roll, pitch, yaw, ax, ay, az );
         //debug_file << roll << " " << pitch << " " << yaw << " " << ax << " " << ay << " " << az << "\n"; 
