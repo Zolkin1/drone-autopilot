@@ -19,6 +19,7 @@ static const int TELEOPERATED_MODE = 1;
 static const int AUTONOMOUS_MODE = 2;
 static const int EMERGENCY_MODE = 3;
 
+int read_fifo_states_float(int fifo, float * out);
 int read_fifo_states(int fifo, uint8_t * states);
 int open_fifo(char* fifo, int status);
 void *control_ops_thread(void *data);

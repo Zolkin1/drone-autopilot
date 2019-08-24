@@ -19,7 +19,8 @@ void *communication_thread(void *data)
 
 	RCInput_Navio2 rcin;
 	rcin.initialize();
-	uint8_t channel_in[6];
+	//uint8_t channel_in[6];
+	float channel_in[4];
 
 	int _states_commanded_fifo = open_fifo_status(COMMANDED_FIFO, O_WRONLY);
 	if (_states_commanded_fifo < 0)
@@ -34,14 +35,14 @@ void *communication_thread(void *data)
 
 	while(1)
 	{
-		for (int i = 0; i < 6; i++) //6 channel remote
+		for (int i = 0; i < 4; i++) //6 channel remote, but only reading 4
 		{
 			printf("Reading value from rcin");
 			//channel_in[i] = rcin.read(i);
 			channel_in[i] = 1;
 		}
 
-		fprintf(debug_tele_inputs, "%i, %i, %i, %i", 1, 1, 1, 1 );	
+		fprintf(debug_tele_inputs, "%i, %i, %i, %i", channel_in[0], channel_in[1], channel_in[2], channel_in[3]);	
 		//debug_tele_inputs << "RC Inputs: " << channel_in[0] << " " << channel_in[1] << " " << channel_in[2] << " " << channel_in[3] << " " << channel_in[4] << " " << channel_in[5] << "\n";
 
 		if (write(_states_commanded_fifo, channel_in, sizeof(channel_in)/sizeof(channel_in[0])) < 0)

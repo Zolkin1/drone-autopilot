@@ -36,7 +36,7 @@ void *control_ops_thread(void *data)
     float temp;
 
     float states_estimated [4];
-    uint8_t states_commanded [6];
+    float states_commanded [4];
 
     //struct state_struct states_estimated;
     //struct state_struct states_commanded;
@@ -66,7 +66,7 @@ void *control_ops_thread(void *data)
 			printf("In control ops loop");
 			case CALIBRATION_MODE:
 				//Calibrate all sensors
-				read_fifo_states(_states_estimated_fifo, states_estimated);
+				read_fifo_states_float(_states_estimated_fifo, states_estimated);
 
 				//Turn on/check/calibrate all motors
 
@@ -74,17 +74,18 @@ void *control_ops_thread(void *data)
 
 			case TELEOPERATED_MODE:
 				printf("Reading from estimated");
-				read_fifo_states(_states_estimated_fifo, states_estimated);
+				read_fifo_states_float(_states_estimated_fifo, states_estimated);
 				printf("Reading from commanded states");
 				read_fifo_states_float(_states_commanded_fifo, states_commanded);
 
 				controller.control_to_state(states_estimated, states_commanded);
+				read_fifo_states_float(_states_estimated_fifo, states_estimated);
 
 				break;
 
 			case AUTONOMOUS_MODE:
-				read_fifo_states(_states_estimated_fifo, states_estimated);
-				read_fifo_states(_states_commanded_fifo, states_commanded);
+				read_fifo_states_float(_states_estimated_fifo, states_estimated);
+				read_fifo_states_float(_states_commanded_fifo, states_commanded);
 
 				//controller.control_to_state_velocity(states_estimated, states_commanded);
 
@@ -106,7 +107,7 @@ void *control_ops_thread(void *data)
 
 int read_fifo_states_float(int fifo, float * out)
 {
-    char temp_bytes(sizeof(out)/sizeof(float));
+    char temp_bytes[(sizeof(out)/sizeof(float))];
     if(read(fifo, temp_bytes, sizeof(out)/sizeof(float)) < 0)
     {
 	    printf("Failed to read fifo");

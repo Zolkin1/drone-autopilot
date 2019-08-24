@@ -6,7 +6,7 @@ quadRotorController::quadRotorController() : rollPID(1, 0, 0, 0, _dt), pitchPID(
 	//motor_debug = fopen("motors_logs.txt", "w");
 }
 
-void quadRotorController::control_to_state(uint8_t * current_state, uint8_t * desired_state)
+void quadRotorController::control_to_state(float * current_state, float * desired_state)
 {
    
 
