@@ -93,6 +93,7 @@ void *estimator_thread(void *data)
 
 	
         printf("[ESTIMATOR THREAD]: just about to write to FIFO\n");
+        wait_rest_of_period(&pinfo);
         if (write(_states_fifo, states, sizeof(states)) < 0)
         {
             printf("[ESTIMATOR THREAD]: Failed to write to states FIFO. Exiting.\n");
@@ -103,7 +104,6 @@ void *estimator_thread(void *data)
         // Log data to the debug file
         fprintf(estimator_debug, "%f %f %f %f %f %f\n", roll, pitch, yaw, ax, ay, az );
         //debug_file << roll << " " << pitch << " " << yaw << " " << ax << " " << ay << " " << az << "\n"; 
-        wait_rest_of_period(&pinfo);
 	}
         return NULL;
 }
