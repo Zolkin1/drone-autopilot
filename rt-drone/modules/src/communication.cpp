@@ -43,7 +43,7 @@ void *communication_thread(void *data)
 		}
 
 		printf("[COMMS THREAD]: Writing to file\n");
-		fprintf(debug_tele_inputs, "%f, %f, %f, %f", channel_in[0], channel_in[1], channel_in[2], channel_in[3]);	
+		fprintf(debug_tele_inputs, "%f, %f, %f, %f\n", channel_in[0], channel_in[1], channel_in[2], channel_in[3]);	
 		//debug_tele_inputs << "RC Inputs: " << channel_in[0] << " " << channel_in[1] << " " << channel_in[2] << " " << channel_in[3] << " " << channel_in[4] << " " << channel_in[5] << "\n";
 
 		printf("[COMMS THREAD]: Writing to fifo\n");
