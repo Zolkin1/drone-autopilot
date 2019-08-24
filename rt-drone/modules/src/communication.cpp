@@ -42,9 +42,11 @@ void *communication_thread(void *data)
 			channel_in[i] = 1;
 		}
 
+		printf("[COMMS THREAD]: Writing to file\n");
 		fprintf(debug_tele_inputs, "%f, %f, %f, %f", channel_in[0], channel_in[1], channel_in[2], channel_in[3]);	
 		//debug_tele_inputs << "RC Inputs: " << channel_in[0] << " " << channel_in[1] << " " << channel_in[2] << " " << channel_in[3] << " " << channel_in[4] << " " << channel_in[5] << "\n";
 
+		printf("[COMMS THREAD]: Writing to fifo\n");
 		if (write(_states_commanded_fifo, channel_in, sizeof(channel_in)) < 0)
         {
             printf("[COMMS THREAD]: Failed to write to states FIFO. Exiting.\n");
