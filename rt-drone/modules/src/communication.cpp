@@ -18,7 +18,7 @@ void *communication_thread(void *data)
 
 
 	RCInput_Navio2 rcin;
-	rcin.initialize();
+	//rcin.initialize();
 	//uint8_t channel_in[6];
 	float channel_in[4];
 

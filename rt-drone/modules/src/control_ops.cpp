@@ -78,7 +78,7 @@ void *control_ops_thread(void *data)
 				//read_fifo_states_float(_states_commanded_fifo, states_commanded);
 
 				controller.control_to_state(states_estimated, states_commanded);
-				read_fifo_states_float(_states_estimated_fifo, states_estimated);
+				//read_fifo_states_float(_states_estimated_fifo, states_estimated);
 
 				break;
 
