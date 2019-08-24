@@ -94,11 +94,11 @@ void *estimator_thread(void *data)
 	
         printf("[ESTIMATOR THREAD]: just about to write to FIFO\n");
         wait_rest_of_period(&pinfo);
-        if (write(_states_fifo, states, sizeof(states)) < 0)
+        /*if (write(_states_fifo, states, sizeof(states)) < 0)
         {
             printf("[ESTIMATOR THREAD]: Failed to write to states FIFO. Exiting.\n");
             exit(-1);
-        }
+        }*/
 
         printf("[ESTIMATOR THREAD]: just about to log to file\n");
         // Log data to the debug file
