@@ -106,8 +106,8 @@ void *control_ops_thread(void *data)
 
 int read_fifo_states_float(int fifo, float * out)
 {
-    char temp_bytes[(sizeof(out)/sizeof(float))];
-    if(read(fifo, temp_bytes, sizeof(out)/sizeof(float)) < 0)
+    float temp_bytes[4];
+    if(read(fifo, temp_bytes, 4*sizeof(float)) < 0)
     {
 	    printf("[CONTROL THREAD]: Failed to read fifo\n");
 	    printf("%i\n", errno);

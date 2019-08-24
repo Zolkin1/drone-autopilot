@@ -93,7 +93,7 @@ void *estimator_thread(void *data)
 
 	
         printf("[ESTIMATOR THREAD]: just about to write to FIFO\n");
-        if (write(_states_fifo, states, sizeof(states)/sizeof(states[0])) < 0)
+        if (write(_states_fifo, states, sizeof(states)) < 0)
         {
             printf("[ESTIMATOR THREAD]: Failed to write to states FIFO. Exiting.\n");
             exit(-1);
