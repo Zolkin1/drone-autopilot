@@ -51,6 +51,9 @@ void *estimator_thread(void *data)
         exit(-1);
     }
 
+    auto imu2 = std::unique_ptr <InertialSensor>{new MPU9250()};
+
+
     printf("[ESTIMATOR THREAD]: start of while loop estimator. \n");
 	while (1)
 	{
@@ -73,7 +76,6 @@ void *estimator_thread(void *data)
 
         printf("[ESTIMATOR THREAD]: reading the accelerometer\n");
         //Rn get thrust just from IMU
-        auto imu2 = std::unique_ptr <InertialSensor>{new MPU9250()};
         imu2->read_accelerometer(&ax, &ay, &az);
         //thrust = az;
         states[3] = az;

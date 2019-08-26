@@ -30,7 +30,7 @@ void *communication_thread(void *data)
         exit(-1);
     }
 
-    FILE * debug_tele_inputs = fopen("tele_inputs", "w");
+    FILE * debug_tele_inputs = fopen("tele_inputs.txt", "w");
     //debug_tele_inputs.open("home/pi/data/rc_inputs.txt");
 
 	while(1)
