@@ -1,3 +1,6 @@
+# Archive Status
+As of 7/8/2020, this repository is archived as it is out of date.
+
 # drone-autopilot
 This repo provides a custom autopilot designed to be run on the Navio2 and Raspberry Pi 3 hardware.
 
